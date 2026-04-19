@@ -1,0 +1,127 @@
+/* Gallery page */
+
+.gallery-intro {
+  padding: calc(var(--space-xl) + 5rem) 0 var(--space-lg);
+}
+
+.gallery-intro h1 {
+  margin: 1.5rem 0 0;
+}
+
+/* Masonry using CSS columns */
+.gallery-grid-section {
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.masonry {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .masonry { column-count: 2; }
+}
+
+@media (max-width: 540px) {
+  .masonry { column-count: 1; }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin: 0 0 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--clio-cream-warm);
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s var(--ease-out), opacity 0.3s;
+}
+
+.masonry-item:hover img {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+/* Instagram section */
+.section-instagram {
+  padding: var(--space-xl) 0;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 10, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+
+.lightbox.open {
+  display: flex;
+  animation: lbfade 0.3s var(--ease);
+}
+
+@keyframes lbfade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-image {
+  max-width: 95%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  background: rgba(245, 237, 224, 0.1);
+  color: var(--clio-cream);
+  border: 1px solid rgba(245, 237, 224, 0.3);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(245, 237, 224, 0.2);
+}
+
+.lightbox-close {
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+
+@media (max-width: 600px) {
+  .lightbox-nav { width: 40px; height: 40px; font-size: 1.5rem; }
+  .lightbox-prev { left: 0.75rem; }
+  .lightbox-next { right: 0.75rem; }
+}

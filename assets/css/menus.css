@@ -1,0 +1,243 @@
+/* Menus page */
+
+.menus-intro {
+  padding: calc(var(--space-xl) + 5rem) 0 var(--space-lg);
+}
+
+.menus-intro h1 {
+  margin: 1.5rem 0 0;
+}
+
+/* Tabs */
+.menu-tabs-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--clio-paper);
+  border-bottom: 1px solid var(--clio-line);
+  padding: 1rem 0;
+}
+
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.menu-tab {
+  padding: 0.5rem 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clio-mute);
+  position: relative;
+  transition: color 0.2s var(--ease);
+}
+
+.menu-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--clio-green);
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease);
+}
+
+.menu-tab:hover { color: var(--clio-green); }
+.menu-tab.active {
+  color: var(--clio-green-deep);
+}
+.menu-tab.active::after { transform: scaleX(1); }
+
+/* Panels */
+.menu-panel {
+  display: none;
+  padding: var(--space-xl) 0;
+}
+
+.menu-panel.active {
+  display: block;
+}
+
+.menu-section {
+  margin-bottom: var(--space-xl);
+}
+
+.menu-section:last-child { margin-bottom: 0; }
+
+.menu-section-head {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.menu-section-head .eyebrow {
+  margin-bottom: 1rem;
+}
+
+.menu-section-head h2 {
+  max-width: 18ch;
+}
+
+.glass-note {
+  color: var(--clio-mute);
+  font-family: var(--font-body);
+  letter-spacing: 0.1em;
+  margin-top: 0.75rem;
+}
+
+.menu-subhead {
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--clio-line);
+}
+
+.menu-subhead .eyebrow {
+  color: var(--clio-green);
+}
+
+/* Lists */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px dotted rgba(63, 77, 33, 0.15);
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  color: var(--clio-ink);
+}
+
+.menu-list li:last-child { border-bottom: none; }
+
+.dish-name {
+  flex: 0 1 auto;
+  font-weight: 400;
+}
+
+.dish-dots {
+  flex: 1 1 auto;
+  min-width: 20px;
+  height: 1px;
+  border-bottom: 1px dotted rgba(63, 77, 33, 0.35);
+  transform: translateY(-6px);
+}
+
+.dish-price {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--clio-green);
+  font-weight: 500;
+}
+
+.per {
+  font-size: 0.75rem;
+  color: var(--clio-mute);
+  font-weight: 400;
+}
+
+.abv {
+  font-size: 0.75rem;
+  color: var(--clio-mute);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-left: 0.5rem;
+}
+
+/* Cocktails — two-line items with description */
+.dish-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.dish-desc {
+  font-size: 0.8125rem;
+  color: var(--clio-mute);
+  line-height: 1.4;
+}
+
+.menu-list li:has(.dish-details) {
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* Wine list — italicised grape names */
+.wine-list li {
+  padding: 0.75rem 0;
+  font-size: 1rem;
+}
+
+.wine-name {
+  flex: 1 1 auto;
+  color: var(--clio-ink);
+}
+
+.wine-name em {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--clio-green-soft);
+  font-size: 1.0625rem;
+}
+
+.wine-price {
+  flex: 0 0 auto;
+  color: var(--clio-green);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  min-width: 60px;
+  text-align: right;
+}
+
+.wine-intro {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--clio-ink-soft);
+  max-width: 58ch;
+  margin-bottom: var(--space-lg);
+}
+
+/* Two-column layout */
+.menu-section-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .menu-section-two-col {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.menu-note {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--clio-line);
+  font-size: 0.875rem;
+  color: var(--clio-mute);
+  font-style: italic;
+  text-align: center;
+}
+
+/* CTA section */
+.section-cta {
+  padding: var(--space-xl) 0;
+}

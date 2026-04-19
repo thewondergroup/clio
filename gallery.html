@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A look inside Clio — the dining room, the kitchen, and what we're cooking." />
+  <title>Gallery — Clio</title>
+  <link rel="icon" type="image/webp" href="assets/images/favicon.webp" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/gallery.css" />
+</head>
+<body>
+
+  <header class="site-header solid">
+    <a href="index.html" class="logo-link" aria-label="Clio home">
+      <img src="assets/images/logo-green.webp" alt="Clio" />
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="menus.html" class="nav-link">Menus</a>
+      <a href="gallery.html" class="nav-link active">Gallery</a>
+      <a href="private-dining.html" class="nav-link">Private Dining</a>
+      <a href="visit.html" class="nav-link">Visit</a>
+      <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="nav-link nav-cta">Book</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Intro -->
+  <section class="gallery-intro">
+    <div class="container text-centre">
+      <span class="eyebrow green reveal">Inside Clio</span>
+      <h1 class="display-xl reveal reveal-delay-1">Gallery.</h1>
+      <p class="lede reveal reveal-delay-2" style="margin-top: 1.5rem; max-width: 520px; margin-left: auto; margin-right: auto;">The room, the kitchen, and the food — as it is on any given service.</p>
+    </div>
+  </section>
+
+  <!-- Masonry grid -->
+  <section class="gallery-grid-section">
+    <div class="container-wide">
+      <div class="masonry">
+        <figure class="masonry-item masonry-tall reveal">
+          <img src="assets/images/interior-wide.jpg" alt="Interior of Clio with warm lighting, hanging plants, terracotta chairs" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal reveal-delay-1">
+          <img src="assets/images/sea-urchin-platter.jpg" alt="Sea urchin platter with seaweed on marble" loading="lazy" />
+        </figure>
+        <figure class="masonry-item masonry-tall reveal reveal-delay-2">
+          <img src="assets/images/chef-plating-herbs.jpg" alt="Chef plating a dish with fresh herbs at the pass" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal">
+          <img src="assets/images/greek-salad.jpg" alt="Greek salad with feta, olives, cucumber and tomato" loading="lazy" />
+        </figure>
+        <figure class="masonry-item masonry-tall reveal reveal-delay-1">
+          <img src="assets/images/octopus.jpg" alt="Grilled octopus with chimichurri potatoes" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal reveal-delay-2">
+          <img src="assets/images/sea-bass-crudo.jpg" alt="Sea bass crudo on green floral patterned plates" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal">
+          <img src="assets/images/interior-bar.jpg" alt="The bar and dining area at Clio" loading="lazy" />
+        </figure>
+        <figure class="masonry-item masonry-tall reveal reveal-delay-1">
+          <img src="assets/images/suckling-pig.jpg" alt="Roasted Middle White suckling pig with crackling" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal reveal-delay-2">
+          <img src="assets/images/tuna-crudo.jpg" alt="Tuna crudo with citrus zest on a white rimmed plate" loading="lazy" />
+        </figure>
+        <figure class="masonry-item masonry-tall reveal">
+          <img src="assets/images/prawn-saganaki.jpg" alt="Red prawn saganaki with tomato and feta on terracotta tiles" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal reveal-delay-1">
+          <img src="assets/images/sea-urchin-single.jpg" alt="Fresh sea urchin with grilled bread and lemon" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal reveal-delay-2">
+          <img src="assets/images/dolma.jpg" alt="Lamb dolma with dill" loading="lazy" />
+        </figure>
+        <figure class="masonry-item masonry-tall reveal">
+          <img src="assets/images/chef-plating-main.jpg" alt="Executive chef plating at the kitchen pass" loading="lazy" />
+        </figure>
+        <figure class="masonry-item reveal reveal-delay-1">
+          <img src="assets/images/chefs-portrait.jpg" alt="Head chef and executive chef at Clio" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram prompt -->
+  <section class="section-instagram bg-cream">
+    <div class="container text-centre">
+      <div class="reveal">
+        <span class="eyebrow green">Follow along</span>
+        <h2 class="display-md" style="margin: 1.5rem 0 1rem;">More on Instagram.</h2>
+        <p class="lede" style="max-width: 500px; margin: 0 auto 2rem;">Daily specials, behind-the-scenes from the kitchen, and the people who make it work.</p>
+        <a href="https://www.instagram.com/clio.london/" target="_blank" rel="noopener" class="btn btn-outline">@clio.london <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">‹</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">›</button>
+    <img class="lightbox-image" src="" alt="" />
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo-white.webp" alt="Clio" />
+          <p>Modern Greek cooking, in the heart of Marylebone.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="visit.html">Address & hours</a></li>
+            <li><a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener">Reserve</a></li>
+            <li><a href="private-dining.html">Private dining</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menus.html">Menus</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/clio.london/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="tel:+442046377813">020 4637 7813</a></li>
+            <li><a href="mailto:hello@cliorestaurant.co.uk">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Clio Restaurant</span>
+        <span>Designed with care in London</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/gallery.js"></script>
+</body>
+</html>
