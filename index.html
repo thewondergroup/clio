@@ -8,6 +8,39 @@
   <link rel="icon" type="image/webp" href="assets/images/favicon.webp" />
   <link rel="stylesheet" href="assets/css/main.css?v=3" />
   <link rel="stylesheet" href="assets/css/home.css?v=3" />
+  <style>
+    /* Mobile menu colour fixes — inline override */
+    /* Hamburger bars default to green-deep (for solid/scrolled header) */
+    .menu-toggle span {
+      background: #2d381a !important;
+    }
+    /* On transparent header over hero image — use cream */
+    .site-header.transparent:not(.scrolled) .menu-toggle span {
+      background: #f5ede0 !important;
+    }
+    /* When menu is open, always force cream bars so X is visible on dark panel */
+    .menu-toggle.open span {
+      background: #f5ede0 !important;
+    }
+    /* Mobile nav panel contents — force cream text */
+    @media (max-width: 900px) {
+      .main-nav .nav-link {
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-link.active {
+        color: #b85840 !important;
+      }
+      .main-nav .nav-cta {
+        background: transparent !important;
+        border-color: #f5ede0 !important;
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-cta:hover {
+        background: #f5ede0 !important;
+        color: #2d381a !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
