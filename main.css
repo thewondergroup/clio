@@ -728,6 +728,12 @@ section.page-hero .hero-subtitle,
   text-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* Nuclear option — force every descendant of hero-content to cream */
+.page-hero .hero-content,
+.page-hero .hero-content * {
+  color: var(--clio-cream) !important;
+}
+
 /* -------------------------------------------------------------------------
    Decorative elements
    ------------------------------------------------------------------------- */
