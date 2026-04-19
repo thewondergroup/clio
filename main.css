@@ -1,0 +1,821 @@
+/* ==========================================================================
+   CLIO — Modern Greek, Marylebone
+   Core stylesheet
+   ========================================================================== */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+/* -------------------------------------------------------------------------
+   Design tokens
+   ------------------------------------------------------------------------- */
+:root {
+  /* Palette */
+  --clio-green: #3f4d21;
+  --clio-green-deep: #2d381a;
+  --clio-green-soft: #5a6b35;
+  --clio-green-wash: #e8e8d8;
+  --clio-terracotta-wash: #ede0d0;
+  --clio-cream: #f5ede0;
+  --clio-cream-warm: #ede6d2;
+  --clio-paper: #f7f3e8;
+  --clio-terracotta: #b85840;
+  --clio-terracotta-deep: #8f4330;
+  --clio-terracotta-dark: #8a3d26;
+  --clio-aubergine: #3e2438;
+  --clio-ink: #1f2414;
+  --clio-ink-soft: #3f4a2c;
+  --clio-mute: #7a7d68;
+  --clio-line: rgba(63, 77, 33, 0.18);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-2xl: 10rem;
+
+  /* Layout */
+  --max-width: 1440px;
+  --content-width: 1200px;
+  --prose-width: 640px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* -------------------------------------------------------------------------
+   Reset & base
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--clio-green-deep);
+  background: var(--clio-paper);
+  overflow-x: hidden;
+}
+
+img, picture, video, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   Typography
+   ------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--clio-green-deep);
+}
+
+.display-xl {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+}
+
+.display-lg {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.display-md {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  font-weight: 400;
+}
+
+.display-sm {
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--clio-green);
+  display: inline-block;
+}
+
+.eyebrow.terracotta { color: var(--clio-terracotta); }
+.eyebrow.green { color: var(--clio-green); }
+
+p { margin: 0 0 1em; }
+.lede {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.4;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--clio-ink-soft);
+}
+
+.small { font-size: 0.875rem; }
+
+/* -------------------------------------------------------------------------
+   Layout helpers
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.prose {
+  max-width: var(--prose-width);
+}
+
+section {
+  padding: var(--space-xl) 0;
+}
+
+.section-tight { padding: var(--space-lg) 0; }
+.section-loose { padding: var(--space-2xl) 0; }
+
+/* -------------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--clio-green);
+  color: var(--clio-cream);
+  border-color: var(--clio-green);
+}
+
+.btn-primary:hover {
+  background: var(--clio-green-deep);
+  border-color: var(--clio-green-deep);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: var(--clio-green);
+  color: var(--clio-cream);
+  border-color: var(--clio-green);
+}
+
+.btn-outline:hover {
+  background: var(--clio-green-deep);
+  border-color: var(--clio-green-deep);
+  color: var(--clio-cream);
+  transform: translateY(-2px);
+}
+
+.btn-ghost-light {
+  background: transparent;
+  color: var(--clio-cream);
+  border-color: var(--clio-cream);
+}
+
+.btn-ghost-light:hover {
+  background: var(--clio-cream);
+  color: var(--clio-green-deep);
+  transform: translateY(-2px);
+}
+
+.btn .arrow {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Header / Navigation
+   ------------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s var(--ease), padding 0.3s var(--ease);
+}
+
+.site-header.transparent {
+  background: transparent;
+}
+
+.site-header.solid,
+.site-header.scrolled {
+  background: var(--clio-paper);
+  border-bottom: 1px solid var(--clio-line);
+  padding: 0.75rem var(--gutter);
+}
+
+.site-header.solid .nav-link,
+.site-header.scrolled .nav-link {
+  color: var(--clio-green-deep);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 110;
+}
+
+.logo-link img {
+  height: 48px;
+  width: auto;
+  transition: height 0.3s var(--ease);
+}
+
+/* Logo variant swap — shown on transparent header, swapped when scrolled */
+.logo-variant-green { display: none; }
+
+.site-header.transparent:not(.scrolled) .logo-variant-white { display: block; }
+.site-header.transparent:not(.scrolled) .logo-variant-green { display: none; }
+
+.site-header.scrolled .logo-variant-white,
+.site-header.solid .logo-variant-white { display: none; }
+.site-header.scrolled .logo-variant-green,
+.site-header.solid .logo-variant-green { display: block; }
+
+.site-header.scrolled .logo-link img,
+.site-header.solid .logo-link img {
+  height: 40px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clio-cream);
+  transition: color 0.2s var(--ease), opacity 0.2s var(--ease);
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s var(--ease);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-cta {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--clio-green);
+  background: var(--clio-green);
+  color: var(--clio-cream) !important;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  transition: all 0.3s var(--ease);
+}
+
+.nav-cta:hover {
+  background: var(--clio-green-deep);
+  border-color: var(--clio-green-deep);
+  transform: translateY(-1px);
+}
+
+/* Transparent header (homepage hero) — ghost until scrolled */
+.site-header.transparent:not(.scrolled) .nav-cta {
+  background: transparent;
+  border-color: var(--clio-cream);
+  color: var(--clio-cream) !important;
+}
+
+.site-header.transparent:not(.scrolled) .nav-cta:hover {
+  background: var(--clio-cream);
+  border-color: var(--clio-cream);
+  color: var(--clio-green-deep) !important;
+  transform: translateY(-1px);
+}
+
+/* The underline hover on nav-link shouldn't appear on the CTA button */
+.nav-cta::after {
+  display: none !important;
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  z-index: 110;
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: var(--clio-green-deep);
+  transition: all 0.3s var(--ease);
+}
+
+/* Transparent header over hero image — use cream bars */
+.site-header.transparent:not(.scrolled) .menu-toggle span {
+  background: var(--clio-cream);
+}
+
+/* When the menu panel is open, always force cream bars so the X shows on the dark panel */
+.menu-toggle.open span {
+  background: var(--clio-cream) !important;
+}
+
+.menu-toggle span:nth-child(1) { top: 16px; }
+.menu-toggle span:nth-child(2) { top: 22px; }
+.menu-toggle span:nth-child(3) { top: 28px; }
+
+.menu-toggle.open span:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(100%, 420px);
+    background: var(--clio-green-deep);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.75rem;
+    padding: 5rem 2.5rem;
+    transform: translateX(100%);
+    transition: transform 0.5s var(--ease);
+  }
+
+  .main-nav.open { transform: translateX(0); }
+
+  .main-nav .nav-link {
+    color: var(--clio-cream) !important;
+    font-size: 1rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.15em;
+    text-transform: none;
+    font-weight: 400;
+  }
+
+  /* Active link in mobile panel — subtle terracotta to tell the user where they are */
+  .main-nav .nav-link.active {
+    color: var(--clio-terracotta) !important;
+  }
+
+  /* Book CTA inside the dark menu panel — cream-outlined ghost so it reads against green */
+  .main-nav .nav-cta {
+    margin-top: 1rem;
+    padding: 0.875rem 1.75rem;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    background: transparent !important;
+    border-color: var(--clio-cream) !important;
+    color: var(--clio-cream) !important;
+  }
+
+  .main-nav .nav-cta:hover {
+    background: var(--clio-cream) !important;
+    color: var(--clio-green-deep) !important;
+    border-color: var(--clio-cream) !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--clio-green-deep);
+  color: var(--clio-cream);
+  padding: var(--space-xl) 0 var(--space-md);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+.footer-brand img {
+  height: 72px;
+  width: auto;
+  margin-bottom: 1.5rem;
+}
+
+.footer-brand p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: rgba(245, 237, 224, 0.75);
+  max-width: 260px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--clio-terracotta);
+  margin-bottom: 1.25rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.footer-col a {
+  font-size: 0.9375rem;
+  color: rgba(245, 237, 224, 0.85);
+  transition: color 0.2s var(--ease);
+}
+
+.footer-col a:hover { color: var(--clio-cream); }
+
+.footer-col p {
+  font-size: 0.9375rem;
+  color: rgba(245, 237, 224, 0.85);
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(245, 237, 224, 0.12);
+  padding-top: 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: rgba(245, 237, 224, 0.55);
+}
+
+.footer-attribution {
+  color: var(--clio-cream);
+  border-bottom: 1px solid rgba(245, 237, 224, 0.3);
+  padding-bottom: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.footer-attribution:hover {
+  color: var(--clio-cream);
+  border-bottom-color: var(--clio-cream);
+}
+
+/* -------------------------------------------------------------------------
+   Hero patterns
+   ------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  color: var(--clio-cream);
+  overflow: hidden;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(31, 36, 20, 0.55) 0%,
+      rgba(31, 36, 20, 0.25) 35%,
+      rgba(31, 36, 20, 0.75) 80%,
+      rgba(31, 36, 20, 0.88) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(31, 36, 20, 0.35) 0%,
+      rgba(31, 36, 20, 0) 55%
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--gutter) var(--space-xl);
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.hero-content .eyebrow {
+  color: var(--clio-cream);
+  opacity: 1;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+  color: var(--clio-cream);
+  margin-bottom: 1.5rem;
+  max-width: 14ch;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  color: var(--clio-cream);
+  max-width: 44ch;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Page hero — smaller, for inner pages */
+.page-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+  color: var(--clio-cream);
+  overflow: hidden;
+}
+
+.page-hero .hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.page-hero .hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero .hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(31, 36, 20, 0.55) 0%,
+      rgba(31, 36, 20, 0.3) 35%,
+      rgba(31, 36, 20, 0.75) 80%,
+      rgba(31, 36, 20, 0.88) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(31, 36, 20, 0.35) 0%,
+      rgba(31, 36, 20, 0) 55%
+    );
+}
+
+.page-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--gutter) var(--space-lg);
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+section.page-hero .eyebrow,
+.page-hero .eyebrow {
+  color: var(--clio-cream) !important;
+  opacity: 1;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+section.page-hero h1,
+section.page-hero .display-xl,
+section.page-hero .display-lg,
+.page-hero h1,
+.page-hero .display-xl,
+.page-hero .display-lg {
+  color: var(--clio-cream) !important;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
+}
+
+section.page-hero .hero-subtitle,
+.page-hero .hero-subtitle {
+  color: var(--clio-cream) !important;
+  text-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* -------------------------------------------------------------------------
+   Decorative elements
+   ------------------------------------------------------------------------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: var(--clio-line);
+  max-width: 80px;
+}
+
+.ornament-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clio-terracotta);
+}
+
+.divider {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--clio-green);
+  margin: 1.5rem 0 2rem;
+  border: none;
+}
+
+.divider-terracotta { background: var(--clio-terracotta); }
+
+.divider-centre {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -------------------------------------------------------------------------
+   Reveal animations
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.25s; }
+  .reveal-delay-3 { transition-delay: 0.4s; }
+}
+
+/* -------------------------------------------------------------------------
+   Utilities
+   ------------------------------------------------------------------------- */
+.text-centre { text-align: center; }
+.bg-cream { background: var(--clio-cream); }
+.bg-wash { background: var(--clio-green-wash); }
+.bg-warm { background: var(--clio-terracotta-wash); }
+.bg-paper { background: var(--clio-paper); }
+.bg-green { background: var(--clio-green); color: var(--clio-cream); }
+.bg-green-deep { background: var(--clio-green-deep); color: var(--clio-cream); }
+.bg-aubergine { background: var(--clio-aubergine); color: var(--clio-cream); }
+.bg-terracotta-dark { background: var(--clio-terracotta-dark); color: var(--clio-cream); }
+
+.bg-green h1, .bg-green h2, .bg-green h3,
+.bg-green-deep h1, .bg-green-deep h2, .bg-green-deep h3,
+.bg-aubergine h1, .bg-aubergine h2, .bg-aubergine h3,
+.bg-terracotta-dark h1, .bg-terracotta-dark h2, .bg-terracotta-dark h3 {
+  color: var(--clio-cream);
+}
+
+.bg-green .eyebrow,
+.bg-green-deep .eyebrow,
+.bg-aubergine .eyebrow {
+  color: var(--clio-terracotta);
+}
+
+/* On terracotta backgrounds, the eyebrow contrasts better in cream */
+.bg-terracotta-dark .eyebrow {
+  color: var(--clio-cream);
+  opacity: 0.7;
+}
