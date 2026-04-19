@@ -8,6 +8,59 @@
   <link rel="icon" type="image/webp" href="assets/images/favicon.webp" />
   <link rel="stylesheet" href="assets/css/main.css?v=3" />
   <link rel="stylesheet" href="assets/css/private.css?v=3" />
+  <!-- Page-specific inline overrides (guaranteed to win) -->
+  <style>
+    /* Force hero text cream */
+    .page-hero .hero-content,
+    .page-hero .hero-content span,
+    .page-hero .hero-content h1,
+    .page-hero .hero-content p,
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .display-xl,
+    .page-hero .hero-content .display-lg,
+    .page-hero .hero-content .hero-subtitle {
+      color: #f5ede0 !important;
+    }
+    .page-hero .hero-content h1,
+    .page-hero .hero-content .display-xl {
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5) !important;
+    }
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .hero-subtitle {
+      text-shadow: 0 1px 20px rgba(0,0,0,0.5) !important;
+    }
+
+    /* Force enquire section to warm terracotta */
+    .enquire-section {
+      background: #8a3d26 !important;
+      color: #f5ede0 !important;
+    }
+    .enquire-section h1,
+    .enquire-section h2,
+    .enquire-section h3,
+    .enquire-section .display-lg {
+      color: #f5ede0 !important;
+    }
+    .enquire-section .eyebrow {
+      color: #f5ede0 !important;
+      opacity: 0.75;
+    }
+    .enquire-section .divider {
+      background: #f5ede0 !important;
+      opacity: 0.4;
+    }
+    .enquire-form input,
+    .enquire-form select,
+    .enquire-form textarea {
+      background: rgba(245, 237, 224, 0.08) !important;
+      border-color: rgba(245, 237, 224, 0.3) !important;
+      color: #f5ede0 !important;
+    }
+    .enquire-form label span {
+      color: #f5ede0 !important;
+      opacity: 0.85;
+    }
+  </style>
 </head>
 <body>
 
