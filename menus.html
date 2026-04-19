@@ -11,9 +11,10 @@
 </head>
 <body>
 
-  <header class="site-header solid">
+  <header class="site-header transparent">
     <a href="index.html" class="logo-link" aria-label="Clio home">
-      <img src="assets/images/logo-green.webp" alt="Clio" />
+      <img src="assets/images/logo-white.webp" alt="Clio" class="logo-variant logo-variant-white" />
+      <img src="assets/images/logo-green.webp" alt="" class="logo-variant logo-variant-green" aria-hidden="true" />
     </a>
     <nav class="main-nav" aria-label="Main">
       <a href="index.html" class="nav-link">Home</a>
@@ -29,15 +30,19 @@
     </button>
   </header>
 
-  <!-- Page title -->
-  <section class="menus-intro">
-    <div class="container text-centre">
-      <span class="eyebrow green reveal">Food · Wine · Drinks</span>
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="hero-media">
+      <img src="assets/images/sea-bass-crudo.jpg" alt="Sea bass crudo on green transferware plates" />
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow reveal">Food · Wine · Drinks</span>
       <h1 class="display-xl reveal reveal-delay-1">The menu.</h1>
-      <p class="lede reveal reveal-delay-2" style="margin-top: 1.5rem; max-width: 580px; margin-left: auto; margin-right: auto;">Produce-led Mediterranean cooking and a wine list that rewards curiosity.</p>
-      <p class="small reveal reveal-delay-2" style="margin-top: 2rem; color: var(--clio-mute);">Menus change with the seasons — this is what we're serving now.</p>
+      <p class="hero-subtitle reveal reveal-delay-2">Produce-led Mediterranean cooking and a wine list that rewards curiosity.</p>
     </div>
   </section>
+
+  <p class="menus-seasonal-note small text-centre">Menus change with the seasons — this is what we're serving now.</p>
 
   <!-- Tabs -->
   <div class="menu-tabs-wrap">
