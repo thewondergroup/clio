@@ -27,14 +27,14 @@
 .offer-image-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 3rem;
-  max-width: 900px;
+  gap: 0.75rem;
+  margin: 3rem auto 0;
+  max-width: 640px;
 }
 
 .offer-image {
   margin: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
@@ -53,7 +53,7 @@
   .offer-image-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
-    max-width: 420px;
+    max-width: 320px;
   }
   .offer-image {
     aspect-ratio: 16 / 10;
