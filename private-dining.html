@@ -6,10 +6,38 @@
   <meta name="description" content="Private dining and events at Clio — bespoke Greek menus for celebrations, corporate dinners, and private parties in Marylebone." />
   <title>Private Dining & Events — Clio</title>
   <link rel="icon" type="image/webp" href="assets/images/favicon.webp" />
-  <link rel="stylesheet" href="assets/css/main.css?v=3" />
-  <link rel="stylesheet" href="assets/css/private.css?v=3" />
+  <link rel="stylesheet" href="assets/css/main.css?v=4" />
+  <link rel="stylesheet" href="assets/css/private.css?v=4" />
   <!-- Page-specific inline overrides (guaranteed to win) -->
   <style>
+    /* Offer image grid — force smaller, centered, square */
+    .offer-image-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 0.75rem !important;
+      margin: 3rem auto 0 !important;
+      max-width: 640px !important;
+    }
+    .offer-image {
+      margin: 0 !important;
+      aspect-ratio: 1 / 1 !important;
+      overflow: hidden !important;
+    }
+    .offer-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
+    @media (max-width: 700px) {
+      .offer-image-grid {
+        grid-template-columns: 1fr !important;
+        max-width: 320px !important;
+      }
+      .offer-image {
+        aspect-ratio: 16 / 10 !important;
+      }
+    }
+
     /* Force hero text cream */
     .page-hero .hero-content,
     .page-hero .hero-content span,
