@@ -23,6 +23,41 @@
   }
 }
 
+/* What we offer — image grid */
+.offer-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.offer-image {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.offer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease-out);
+}
+
+.offer-image:hover img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 700px) {
+  .offer-image-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .offer-image {
+    aspect-ratio: 4 / 3;
+  }
+}
+
 /* Spaces */
 .spaces-section {
   padding: var(--space-2xl) 0;
