@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Meet the team behind Clio — executive chef Glen Ballis, head chef Louis Korovias, and general manager Fabio Lega." />
+  <title>About — Clio</title>
+  <link rel="icon" type="image/webp" href="assets/images/favicon.webp" />
+  <link rel="stylesheet" href="assets/css/main.css?v=3" />
+  <link rel="stylesheet" href="assets/css/about.css?v=3" />
+  <!-- Page-specific inline overrides (guaranteed to win) -->
+  <style>
+    .page-hero .hero-content,
+    .page-hero .hero-content span,
+    .page-hero .hero-content h1,
+    .page-hero .hero-content p,
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .display-xl,
+    .page-hero .hero-content .display-lg,
+    .page-hero .hero-content .hero-subtitle {
+      color: #f5ede0 !important;
+    }
+    .page-hero .hero-content h1,
+    .page-hero .hero-content .display-xl {
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5) !important;
+    }
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .hero-subtitle {
+      text-shadow: 0 1px 20px rgba(0,0,0,0.5) !important;
+    }
+  
+    /* Mobile menu colour fixes — inline override */
+    /* Hamburger bars default to green-deep (for solid/scrolled header) */
+    .menu-toggle span {
+      background: #2d381a !important;
+    }
+    /* On transparent header over hero image — use cream */
+    .site-header.transparent:not(.scrolled) .menu-toggle span {
+      background: #f5ede0 !important;
+    }
+    /* When menu is open, always force cream bars so X is visible on dark panel */
+    .menu-toggle.open span {
+      background: #f5ede0 !important;
+    }
+    /* Mobile nav panel contents — force cream text */
+    @media (max-width: 900px) {
+      .main-nav .nav-link {
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-link.active {
+        color: #b85840 !important;
+      }
+      .main-nav .nav-cta {
+        background: transparent !important;
+        border-color: #f5ede0 !important;
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-cta:hover {
+        background: #f5ede0 !important;
+        color: #2d381a !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header transparent">
+    <a href="index.html" class="logo-link" aria-label="Clio home">
+      <img src="assets/images/logo-white.webp" alt="Clio" class="logo-variant logo-variant-white" />
+      <img src="assets/images/logo-green.webp" alt="" class="logo-variant logo-variant-green" aria-hidden="true" />
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="menus.html" class="nav-link">Menus</a>
+      <a href="gallery.html" class="nav-link">Gallery</a>
+      <a href="private-dining.html" class="nav-link">Private Dining</a>
+      <a href="visit.html" class="nav-link">Visit</a>
+      <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="nav-link nav-cta">Book</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="hero-media">
+      <img src="assets/images/clio-kitchen.jpg" alt="The Clio kitchen" />
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow reveal">Our story</span>
+      <h1 class="display-xl reveal reveal-delay-1">The people<br/>behind Clio.</h1>
+      <p class="hero-subtitle reveal reveal-delay-2">Produce-led Mediterranean cooking, brought to life by a team that knows its craft.</p>
+    </div>
+  </section>
+
+  <!-- Page intro -->
+  <section class="page-intro">
+    <div class="container">
+      <div class="page-intro-grid">
+        <div class="reveal">
+          <span class="eyebrow green">Our story</span>
+          <h2 class="display-lg">The muse<br/>of history.</h2>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <p class="lede">In Greek mythology, Clio is the muse who preserves — the one who keeps the record of what's worth remembering.</p>
+          <p>It felt like the right name for a restaurant built around the things we want to keep cooking: grilled fish, a proper Greek salad, the kind of slow-roasted meats that draw people back. A menu rooted in Greek tradition, reaching into the wider Mediterranean, grounded in the best produce we can find.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy with image -->
+  <section class="section-philosophy">
+    <div class="container-wide">
+      <div class="philosophy-grid">
+        <figure class="philosophy-image reveal">
+          <img src="assets/images/greek-salad.jpg" alt="Greek salad with feta, tomato, olives and cucumber" loading="lazy" />
+        </figure>
+        <div class="philosophy-text reveal reveal-delay-1">
+          <span class="eyebrow green">The approach</span>
+          <h2 class="display-lg">Simple, done<br/>precisely.</h2>
+          <hr class="divider" />
+          <p>Clio's kitchen is defined by a confident approach to simplicity. Every dish is built around one or two ingredients at their best — a whole fish from the grill, vegetables dressed with oil and lemon, meats slow-cooked until they fall apart.</p>
+          <p>There's no show, no unnecessary technique. Just cooking that trusts its ingredients — which means the sourcing has to be right. Fish from day boats. Lamb from Cornish farms. Olive oil from producers we know by name.</p>
+          <p>It's the kind of food that rewards repeated visits: familiar enough to order without thinking, interesting enough to keep discovering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section-team bg-cream">
+    <div class="container">
+      <div class="section-head reveal text-centre">
+        <span class="eyebrow green">The team</span>
+        <h2 class="display-lg">The people<br/>behind Clio.</h2>
+        <hr class="divider divider-centre" />
+      </div>
+
+      <div class="team-grid">
+        <article class="team-card reveal">
+          <div class="team-image">
+            <img src="assets/images/chef-plating-main.jpg" alt="Executive chef Glen Ballis plating a dish at the pass" loading="lazy" />
+          </div>
+          <div class="team-body">
+            <h3 class="display-sm">Glen Ballis</h3>
+            <p class="role">Executive Chef</p>
+            <p>Glen leads the kitchen at Clio. His approach is shaped by decades of Mediterranean cooking — a deep respect for produce, a preference for live-fire techniques, and an instinct for when to leave a dish alone.</p>
+          </div>
+        </article>
+
+        <article class="team-card reveal reveal-delay-1">
+          <div class="team-image">
+            <img src="assets/images/louis-korovias.jpg" alt="Head chef Louis Korovias holding a tray of fresh sea urchins" loading="lazy" />
+          </div>
+          <div class="team-body">
+            <h3 class="display-sm">Louis Korovias</h3>
+            <p class="role">Head Chef</p>
+            <p>Louis brings the precision of his years at Locanda Locatelli and Pied à Terre to Clio's daily service. Working closely with Glen, he's responsible for the consistency and quality that defines the room — dish after dish, night after night.</p>
+          </div>
+        </article>
+
+        <article class="team-card reveal reveal-delay-2">
+          <div class="team-image">
+            <img src="assets/images/interior-bar.jpg" alt="The Clio dining room with warm lighting" loading="lazy" />
+          </div>
+          <div class="team-body">
+            <h3 class="display-sm">Fabio Lega</h3>
+            <p class="role">General Manager</p>
+            <p>Fabio oversees the dining room, bringing the warmth and attention of someone who's spent his career in restaurants that care — including Kensington Place and Hereford Road.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wine programme teaser -->
+  <section class="section-wine">
+    <div class="container">
+      <div class="wine-grid">
+        <div class="wine-text reveal">
+          <span class="eyebrow green">Wine</span>
+          <h2 class="display-lg">An eclectic list,<br/>thoughtfully chosen.</h2>
+          <hr class="divider" />
+          <p>Our wine programme reflects the same care we bring to the food. An eclectic, carefully curated list that reaches across Greece, the Mediterranean and beyond — built to reward both dedicated oenophiles and guests who simply want a good bottle with dinner.</p>
+          <p>If you're unsure, ask. We genuinely like helping you find the right thing.</p>
+          <a href="menus.html#wine" class="btn btn-outline" style="margin-top: 1.5rem;">View the wine list <span class="arrow">→</span></a>
+        </div>
+        <figure class="wine-image reveal reveal-delay-1">
+          <img src="assets/images/interior-bar.jpg" alt="The bar at Clio with wine glasses set on marble tables" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta bg-green-deep">
+    <div class="container text-centre">
+      <div class="reveal">
+        <span class="eyebrow">Come and see</span>
+        <h2 class="display-lg" style="margin: 1.5rem 0 2.5rem;">A table is waiting.</h2>
+        <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="btn btn-ghost-light">Reserve a table <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/images/logo-white.webp" alt="Clio" />
+          <p>Modern Greek cooking, in the heart of Marylebone.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="visit.html">Address & hours</a></li>
+            <li><a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener">Reserve</a></li>
+            <li><a href="private-dining.html">Private dining</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menus.html">Menus</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/clio.london/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="tel:+442046377813">020 4637 7813</a></li>
+            <li><a href="mailto:hello@cliorestaurant.co.uk">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Clio Restaurant</span>
+        <span>Designed by <a href="https://www.thewonderagency.co/" target="_blank" rel="noopener" class="footer-attribution">The Wonder Agency</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=3"></script>
+</body>
+</html>
