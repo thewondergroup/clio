@@ -347,8 +347,23 @@ function renderHoursSummary(rows, container) {
  * matching the existing .faq markup.
  */
 function renderFaqs(items, container) {
+  if (!items || !items.length) {
+    console.warn("FAQs sheet returned no rows. Keeping fallback.");
+    return;
+  }
+
+  // Log what columns we actually got, to help diagnose if headers are wrong
+  const sampleKeys = Object.keys(items[0] || {});
+  if (!sampleKeys.includes("question") || !sampleKeys.includes("answer")) {
+    console.warn("FAQs sheet is missing required columns. Got:", sampleKeys, "Expected: question, answer. Keeping fallback.");
+    return;
+  }
+
   const faqs = items.filter((f) => f.question && f.question.trim());
-  if (!faqs.length) throw new Error("No FAQs");
+  if (!faqs.length) {
+    console.warn("FAQs sheet has no valid rows (all question cells empty). Keeping fallback.");
+    return;
+  }
 
   const html = faqs
     .map(
@@ -361,6 +376,7 @@ function renderFaqs(items, container) {
     .join("");
 
   container.innerHTML = html;
+  console.log(`FAQs loaded from Sheet: ${faqs.length} items`);
 }
 
 /**
