@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Find Clio in Marylebone, London. Address, opening hours, directions, and how to book." />
+  <title>Visit — Clio</title>
+  <link rel="icon" type="image/webp" href="../assets/images/favicon.webp" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=3" />
+  <link rel="stylesheet" href="../assets/css/visit.css?v=3" />
+  <!-- Page-specific inline overrides (guaranteed to win) -->
+  <style>
+    .page-hero .hero-content,
+    .page-hero .hero-content span,
+    .page-hero .hero-content h1,
+    .page-hero .hero-content p,
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .display-xl,
+    .page-hero .hero-content .display-lg,
+    .page-hero .hero-content .hero-subtitle {
+      color: #f5ede0 !important;
+    }
+    .page-hero .hero-content h1,
+    .page-hero .hero-content .display-xl {
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5) !important;
+    }
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .hero-subtitle {
+      text-shadow: 0 1px 20px rgba(0,0,0,0.5) !important;
+    }
+  
+    /* Mobile menu colour fixes — inline override */
+    /* Hamburger bars default to green-deep (for solid/scrolled header) */
+    .menu-toggle span {
+      background: #2d381a !important;
+    }
+    /* On transparent header over hero image — use cream */
+    .site-header.transparent:not(.scrolled) .menu-toggle span {
+      background: #f5ede0 !important;
+    }
+    /* When menu is open, always force cream bars so X is visible on dark panel */
+    .menu-toggle.open span {
+      background: #f5ede0 !important;
+    }
+    /* Mobile nav panel contents — force cream text */
+    @media (max-width: 900px) {
+      .main-nav .nav-link {
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-link.active {
+        color: #b85840 !important;
+      }
+      .main-nav .nav-cta {
+        background: transparent !important;
+        border-color: #f5ede0 !important;
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-cta:hover {
+        background: #f5ede0 !important;
+        color: #2d381a !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header transparent">
+    <a href="/" class="logo-link" aria-label="Clio home">
+      <img src="../assets/images/logo-white.webp" alt="Clio" class="logo-variant logo-variant-white" />
+      <img src="../assets/images/logo-green.webp" alt="" class="logo-variant logo-variant-green" aria-hidden="true" />
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/menus/" class="nav-link">Menus</a>
+      <a href="/gallery/" class="nav-link">Gallery</a>
+      <a href="/private-dining/" class="nav-link">Private Dining</a>
+      <a href="/visit/" class="nav-link active">Visit</a>
+      <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="nav-link nav-cta">Book</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="hero-media">
+      <img src="../assets/images/interior-wide.jpg" alt="Interior of Clio with hanging plants, terracotta chairs, and warm lighting" />
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow reveal">Marylebone · W1</span>
+      <h1 class="display-xl reveal reveal-delay-1">Come and<br/>find us.</h1>
+      <p class="hero-subtitle reveal reveal-delay-2">66 Chiltern Street, a short walk from Baker Street.</p>
+    </div>
+  </section>
+
+  <!-- Core info -->
+  <section class="visit-info">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-card reveal">
+          <span class="eyebrow green">Address</span>
+          <h3 class="display-sm" style="margin: 0.75rem 0 1rem;">Where to find us</h3>
+          <p>66 Chiltern Street<br/>London W1U 4EJ<br/>United Kingdom</p>
+          <a href="https://maps.app.goo.gl/aXBzYSzXdha7Y4KW9" target="_blank" rel="noopener" class="info-link">Open in Google Maps →</a>
+        </div>
+
+        <div class="info-card reveal reveal-delay-1">
+          <span class="eyebrow green">Hours</span>
+          <h3 class="display-sm" style="margin: 0.75rem 0 1rem;">When we're open</h3>
+          <div data-live="hours">
+            <dl class="hours-list">
+              <div><dt>Lunch</dt><dd>12:00 – 15:00</dd></div>
+              <div><dt>Dinner</dt><dd>18:00 – 22:00</dd></div>
+              <div><dt>Days</dt><dd>Open every day</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="info-card reveal reveal-delay-2">
+          <span class="eyebrow green">Contact</span>
+          <h3 class="display-sm" style="margin: 0.75rem 0 1rem;">Get in touch</h3>
+          <p>Phone<br/><a href="tel:+442046377813">020 4637 7813</a></p>
+          <p style="margin-top: 1rem;">Email<br/><a href="mailto:hello@cliorestaurant.co.uk">hello@cliorestaurant.co.uk</a></p>
+          <p style="margin-top: 1rem; font-size: 0.9375rem; color: var(--clio-ink-soft);">For all enquiries, including private events.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map + image -->
+  <section class="visit-map-section bg-cream">
+    <div class="container-wide">
+      <div class="map-grid">
+        <figure class="map-image reveal">
+          <iframe
+            src="https://www.google.com/maps?q=66+Chiltern+Street,+London+W1U+4EJ&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Clio location on Google Maps"></iframe>
+        </figure>
+        <div class="getting-here reveal reveal-delay-1">
+          <span class="eyebrow green">Getting here</span>
+          <h2 class="display-lg">How to arrive.</h2>
+          <hr class="divider" />
+
+          <div class="transport-block">
+            <h4>Underground</h4>
+            <p>Baker Street (Bakerloo, Circle, Hammersmith & City, Jubilee, Metropolitan) — 4 minutes walk<br/>Bond Street (Central, Jubilee, Elizabeth) — 8 minutes walk<br/>Marylebone (Bakerloo) — 10 minutes walk</p>
+          </div>
+
+          <div class="transport-block">
+            <h4>By bus</h4>
+            <p>Routes 2, 13, 30, 74, 113, 139, 189, 274 all stop on Baker Street or Marylebone Road.</p>
+          </div>
+
+          <div class="transport-block">
+            <h4>Cycling</h4>
+            <p>Santander Cycles docking stations on Marylebone High Street and Dorset Square.</p>
+          </div>
+
+          <div class="transport-block">
+            <h4>By car</h4>
+            <p>Q-Park Marylebone (Cramer Street) is the closest car park. The area is within London's Congestion Charge zone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="visit-faqs">
+    <div class="container">
+      <div class="faq-head reveal">
+        <span class="eyebrow green">Good to know</span>
+        <h2 class="display-lg">Before you come.</h2>
+      </div>
+
+      <div class="faq-grid" data-live="faqs">
+        <details class="faq reveal">
+          <summary><span>Do you accept walk-ins?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>Yes — walk-ins are welcome and we'll always do our best to fit you in. For tables, we recommend booking through OpenTable.</p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Is there a dress code?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>No formal dress code. Come as you are — we've designed the room to feel comfortable in jeans or a suit.</p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Can you accommodate dietary requirements?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>Absolutely. Please let us know about any allergies or dietary needs when you book, and we'll make sure the kitchen is ready for you. Vegetarian options are available throughout the menu.</p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Are children welcome?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>Yes — children are welcome at all services. Just let us know when booking so we can prepare the right table.</p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Is the restaurant accessible?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>The ground floor dining room is fully accessible, with an accessible WC. Please let us know in advance if you have any specific requirements — we'll do everything we can to accommodate.</p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Is there a service charge?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>A discretionary service charge of 12.5% is added to all bills.</p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Do you have a private dining room?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>Yes — we host private events for groups of 10 or more. <a href="/private-dining/">Learn more about private dining at Clio →</a></p></div>
+        </details>
+
+        <details class="faq reveal">
+          <summary><span>Do you have gift vouchers?</span><span class="faq-icon">+</span></summary>
+          <div class="faq-body"><p>Yes, in any denomination. Email <a href="mailto:hello@cliorestaurant.co.uk">hello@cliorestaurant.co.uk</a> and we'll arrange one for you.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta bg-green-deep">
+    <div class="container text-centre">
+      <div class="reveal">
+        <span class="eyebrow">Book a table</span>
+        <h2 class="display-lg" style="margin: 1.5rem 0 2.5rem;">We'd love to see you.</h2>
+        <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="btn btn-ghost-light">Reserve on OpenTable <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-white.webp" alt="Clio" />
+          <p>Modern Greek cooking, in the heart of Marylebone.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="/visit/">Address & hours</a></li>
+            <li><a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener">Reserve</a></li>
+            <li><a href="/private-dining/">Private dining</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/menus/">Menus</a></li>
+            <li><a href="/gallery/">Gallery</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/clio.london/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="tel:+442046377813">020 4637 7813</a></li>
+            <li><a href="mailto:hello@cliorestaurant.co.uk">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Clio Restaurant</span>
+        <span>Designed by <a href="https://www.thewonderagency.co/" target="_blank" rel="noopener" class="footer-attribution">The Wonder Agency</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=3"></script>
+  <script src="../assets/js/live-content.js?v=1"></script>
+</body>
+</html>

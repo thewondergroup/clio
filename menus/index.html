@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Clio's menu of modern Greek and Mediterranean dishes, plus an eclectic wine list curated with care." />
+  <title>Menus — Clio</title>
+  <link rel="icon" type="image/webp" href="../assets/images/favicon.webp" />
+  <link rel="stylesheet" href="../assets/css/main.css?v=3" />
+  <link rel="stylesheet" href="../assets/css/menus.css?v=3" />
+  <!-- Page-specific inline overrides (guaranteed to win) -->
+  <style>
+    .page-hero .hero-content,
+    .page-hero .hero-content span,
+    .page-hero .hero-content h1,
+    .page-hero .hero-content p,
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .display-xl,
+    .page-hero .hero-content .display-lg,
+    .page-hero .hero-content .hero-subtitle {
+      color: #f5ede0 !important;
+    }
+    .page-hero .hero-content h1,
+    .page-hero .hero-content .display-xl {
+      text-shadow: 0 2px 40px rgba(0,0,0,0.5) !important;
+    }
+    .page-hero .hero-content .eyebrow,
+    .page-hero .hero-content .hero-subtitle {
+      text-shadow: 0 1px 20px rgba(0,0,0,0.5) !important;
+    }
+  
+    /* Mobile menu colour fixes — inline override */
+    /* Hamburger bars default to green-deep (for solid/scrolled header) */
+    .menu-toggle span {
+      background: #2d381a !important;
+    }
+    /* On transparent header over hero image — use cream */
+    .site-header.transparent:not(.scrolled) .menu-toggle span {
+      background: #f5ede0 !important;
+    }
+    /* When menu is open, always force cream bars so X is visible on dark panel */
+    .menu-toggle.open span {
+      background: #f5ede0 !important;
+    }
+    /* Mobile nav panel contents — force cream text */
+    @media (max-width: 900px) {
+      .main-nav .nav-link {
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-link.active {
+        color: #b85840 !important;
+      }
+      .main-nav .nav-cta {
+        background: transparent !important;
+        border-color: #f5ede0 !important;
+        color: #f5ede0 !important;
+      }
+      .main-nav .nav-cta:hover {
+        background: #f5ede0 !important;
+        color: #2d381a !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header transparent">
+    <a href="/" class="logo-link" aria-label="Clio home">
+      <img src="../assets/images/logo-white.webp" alt="Clio" class="logo-variant logo-variant-white" />
+      <img src="../assets/images/logo-green.webp" alt="" class="logo-variant logo-variant-green" aria-hidden="true" />
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/about/" class="nav-link">About</a>
+      <a href="/menus/" class="nav-link active">Menus</a>
+      <a href="/gallery/" class="nav-link">Gallery</a>
+      <a href="/private-dining/" class="nav-link">Private Dining</a>
+      <a href="/visit/" class="nav-link">Visit</a>
+      <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="nav-link nav-cta">Book</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="hero-media">
+      <img src="../assets/images/sea-bass-crudo.jpg" alt="Sea bass crudo on green transferware plates" />
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow reveal">Food · Wine · Drinks</span>
+      <h1 class="display-xl reveal reveal-delay-1">The menu.</h1>
+      <p class="hero-subtitle reveal reveal-delay-2">Produce-led Mediterranean cooking and a wine list that rewards curiosity.</p>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <div class="menu-tabs-wrap">
+    <div class="container">
+      <div class="menu-tabs" role="tablist">
+        <button class="menu-tab active" data-target="food" role="tab" aria-selected="true">Food</button>
+        <button class="menu-tab" data-target="wine" role="tab" aria-selected="false">Wine</button>
+        <button class="menu-tab" data-target="drinks" role="tab" aria-selected="false">Cocktails & Drinks</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Food menu -->
+  <section class="menu-panel active" id="food" role="tabpanel">
+    <div class="container">
+      <div data-live="food-menu">
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Aperitíf</span>
+          <h2 class="display-md">Something to begin.</h2>
+        </div>
+        <ul class="menu-list">
+          <li><span class="dish-name">Greek Negroni</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+          <li><span class="dish-name">Blood Orange Margarita</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-section-two-col">
+        <div class="menu-section">
+          <div class="menu-section-head">
+            <span class="eyebrow green">Snacks</span>
+            <h2 class="display-md">To share.</h2>
+          </div>
+          <ul class="menu-list">
+            <li><span class="dish-name">Taramasalata, bottarga, dill</span><span class="dish-dots"></span><span class="dish-price">6</span></li>
+            <li><span class="dish-name">Hummus, broad beans, mint</span><span class="dish-dots"></span><span class="dish-price">6</span></li>
+            <li><span class="dish-name">Tzatziki</span><span class="dish-dots"></span><span class="dish-price">6</span></li>
+            <li><span class="dish-name">Spiced red pepper dip, aged feta</span><span class="dish-dots"></span><span class="dish-price">6</span></li>
+            <li><span class="dish-name">Fresh sea urchin, olive oil, lemon</span><span class="dish-dots"></span><span class="dish-price">16</span></li>
+            <li><span class="dish-name">Zucchini 'crisps'</span><span class="dish-dots"></span><span class="dish-price">7</span></li>
+          </ul>
+        </div>
+
+        <div class="menu-section">
+          <div class="menu-section-head">
+            <span class="eyebrow green">Bread</span>
+            <h2 class="display-md">Fresh from the oven.</h2>
+          </div>
+          <ul class="menu-list">
+            <li><span class="dish-name">Ancient bread, sheep's butter</span><span class="dish-dots"></span><span class="dish-price">5</span></li>
+            <li><span class="dish-name">Yogurt flat bread, rosemary, sea salt</span><span class="dish-dots"></span><span class="dish-price">5</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Starters</span>
+          <h2 class="display-md">To start.</h2>
+        </div>
+        <ul class="menu-list">
+          <li><span class="dish-name">Roast beetroot, wild greens, Anthotyros, olives</span><span class="dish-dots"></span><span class="dish-price">10</span></li>
+          <li><span class="dish-name">Greek salad</span><span class="dish-dots"></span><span class="dish-price">16</span></li>
+          <li><span class="dish-name">Braised artichokes, carrots, potato, broad beans, peas</span><span class="dish-dots"></span><span class="dish-price">15</span></li>
+          <li><span class="dish-name">Spanakopita</span><span class="dish-dots"></span><span class="dish-price">14</span></li>
+          <li><span class="dish-name">Sea bass crudo, toursi chilli, olive oil</span><span class="dish-dots"></span><span class="dish-price">17</span></li>
+          <li><span class="dish-name">Charred homemade Loukaniko sausage, mustard</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+          <li><span class="dish-name">Mazara Red Prawn Saganaki</span><span class="dish-dots"></span><span class="dish-price">18</span></li>
+          <li><span class="dish-name">Lamb dolma, mint, yogurt</span><span class="dish-dots"></span><span class="dish-price">15</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Mains</span>
+          <h2 class="display-md">From the grill, the pan, and the wood oven.</h2>
+        </div>
+        <ul class="menu-list">
+          <li><span class="dish-name">Grilled octopus, potatoes, 'salsa'</span><span class="dish-dots"></span><span class="dish-price">28</span></li>
+          <li><span class="dish-name">Roast wild sea bass fillet, Romero pepper, fennel salad</span><span class="dish-dots"></span><span class="dish-price">34</span></li>
+          <li><span class="dish-name">Monkfish kebab, wilted wild greens, olive oil</span><span class="dish-dots"></span><span class="dish-price">26</span></li>
+          <li><span class="dish-name">Cornish crab & tomato orzo, 6 months aged feta</span><span class="dish-dots"></span><span class="dish-price">36</span></li>
+          <li><span class="dish-name">Rabbit stifado, whipped polenta, Mavrodaphne sauce</span><span class="dish-dots"></span><span class="dish-price">25</span></li>
+          <li><span class="dish-name">Roast & confit duck, braised gigante beans</span><span class="dish-dots"></span><span class="dish-price">34</span></li>
+          <li><span class="dish-name">Beef & pork keftethes, roast tomato, tzatziki</span><span class="dish-dots"></span><span class="dish-price">21</span></li>
+          <li><span class="dish-name">Bucatini, spring vegetables, Xigalo cheese</span><span class="dish-dots"></span><span class="dish-price">21</span></li>
+        </ul>
+
+        <div class="menu-subhead">
+          <span class="eyebrow green">To share</span>
+        </div>
+        <ul class="menu-list">
+          <li><span class="dish-name">Whole roasted chicken, lemon potatoes, warm tomato dressing</span><span class="dish-dots"></span><span class="dish-price">58</span></li>
+          <li><span class="dish-name">Middle White suckling pig, spiced herb relish</span><span class="dish-dots"></span><span class="dish-price">68</span></li>
+          <li><span class="dish-name">Cornish Launceston lamb shoulder, braised lentils, labneh, parsley</span><span class="dish-dots"></span><span class="dish-price">85</span></li>
+          <li><span class="dish-name">Huntsham Farm Long Horn Côte de Boeuf</span><span class="dish-dots"></span><span class="dish-price">95 <span class="per">/ kg</span></span></li>
+          <li><span class="dish-name">Irish Angus Wrexford Porterhouse steak</span><span class="dish-dots"></span><span class="dish-price">110 <span class="per">/ kg</span></span></li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Sides</span>
+          <h2 class="display-md">On the side.</h2>
+        </div>
+        <ul class="menu-list">
+          <li><span class="dish-name">Butter head lettuce, lemon vinaigrette</span><span class="dish-dots"></span><span class="dish-price">7</span></li>
+          <li><span class="dish-name">Steamed wild greens, olive oil</span><span class="dish-dots"></span><span class="dish-price">7</span></li>
+          <li><span class="dish-name">Braised runner beans, potato, tomato, feta</span><span class="dish-dots"></span><span class="dish-price">10</span></li>
+          <li><span class="dish-name">Hand cut chips, mountain oregano, sea salt</span><span class="dish-dots"></span><span class="dish-price">8</span></li>
+        </ul>
+      </div>
+
+      </div><!-- /data-live food-menu -->
+      <p class="menu-note">A discretionary service charge of 12.5% will be added to all bills. Please let us know about any allergies.</p>
+    </div>
+  </section>
+
+  <!-- Wine menu -->
+  <section class="menu-panel" id="wine" role="tabpanel">
+    <div class="container">
+
+      <p class="wine-intro reveal">
+        The wine list is built to reward curiosity — Greek and island producers alongside classics from Burgundy, Bordeaux, and beyond. Ask us, and we'll help you find the right thing.
+      </p>
+
+      <div data-live="wine-list">
+
+      <!-- By the glass -->
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">By the glass</span>
+          <h2 class="display-md">A glass of...</h2>
+          <p class="glass-note small">125ml · 500ml carafe</p>
+        </div>
+
+        <div class="menu-subhead"><span class="eyebrow green">Sparkling</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name"><em>Cava Brut Nature</em> Pago de Tharsis NV</span><span class="wine-price">10</span></li>
+          <li><span class="wine-name"><em>Pet Nat</em> Mylonas</span><span class="wine-price">12</span></li>
+          <li><span class="wine-name"><em>Champagne Carte Or Brut</em> Amyot NV</span><span class="wine-price">16</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Sherry</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name"><em>Fino</em> Maestro Sierra</span><span class="wine-price">8</span></li>
+          <li><span class="wine-name"><em>Amontillado</em> Maestro Sierra</span><span class="wine-price">10</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">White</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Kokotos "Agrimi" <em>Savatiano-Roditis</em>, Stamata 2024</span><span class="wine-price">8 / 32</span></li>
+          <li><span class="wine-name">La Comarcal Blanco, Valencia, Spain 2024</span><span class="wine-price">9 / 36</span></li>
+          <li><span class="wine-name">Muscadet Sur Lie <em>Domaine La Pepière</em>, Loire 2024</span><span class="wine-price">10 / 40</span></li>
+          <li><span class="wine-name">Marabino Muscatedda, Sicily 2024</span><span class="wine-price">11 / 44</span></li>
+          <li><span class="wine-name">Aôri <em>Muscat of Spina</em>, Crete 2024</span><span class="wine-price">12 / 48</span></li>
+          <li><span class="wine-name">Chablis Mosnier, Burgundy 2024</span><span class="wine-price">14 / 56</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Skin contact & rosé</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Artisans "The Orange Point", Naoussa 2023</span><span class="wine-price">10 / 40</span></li>
+          <li><span class="wine-name">Phoenix, Mersel Wine, Lebanon 2023</span><span class="wine-price">11 / 44</span></li>
+          <li><span class="wine-name">Château d'Ollières, Coteaux Varois, Provence 2024</span><span class="wine-price">10 / 40</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Red</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Three Bowls <em>Xinomavro</em>, Naoussa 2023</span><span class="wine-price">8 / 32</span></li>
+          <li><span class="wine-name">Joan d'Anguera, Les Maiols, Montsant 2023</span><span class="wine-price">9 / 36</span></li>
+          <li><span class="wine-name">Montepulciano <em>Giani Masciarelli</em>, Abruzzo 2021</span><span class="wine-price">10 / 40</span></li>
+          <li><span class="wine-name">Blaufrankisch Judith Beck, Burgenland 2023</span><span class="wine-price">11 / 44</span></li>
+          <li><span class="wine-name">Seira #3 <em>Georgas Family</em>, Spata 2022</span><span class="wine-price">12 / 48</span></li>
+          <li><span class="wine-name">Scar of the Sea <em>Pinot Noir</em>, Santa Maria Valley 2024</span><span class="wine-price">15 / 60</span></li>
+        </ul>
+      </div>
+
+      <!-- Sparkling bottles -->
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Bottles · Sparkling</span>
+          <h2 class="display-md">Bubbles.</h2>
+        </div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Cava Brut Nature Pago de Tharsis, Medusa NV</span><span class="wine-price">48</span></li>
+          <li><span class="wine-name">Pet Nat Savatiano</span><span class="wine-price">55</span></li>
+          <li><span class="wine-name">Champagne Carte Or Brut, Amyot NV</span><span class="wine-price">85</span></li>
+          <li><span class="wine-name">Luis Perez El Corregidor, Jerez NV</span><span class="wine-price">92</span></li>
+          <li><span class="wine-name">Champagne Grand Cru Brut, François Secondé</span><span class="wine-price">95</span></li>
+        </ul>
+      </div>
+
+      <!-- White -->
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Bottles · White</span>
+          <h2 class="display-md">White wines.</h2>
+        </div>
+
+        <div class="menu-subhead"><span class="eyebrow green">Greece</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Kokotos "Agrími" Savatiano-Roditis, Stamata 2024</span><span class="wine-price">37</span></li>
+          <li><span class="wine-name">Little Prince, Karavitakis, Crete 2024</span><span class="wine-price">40</span></li>
+          <li><span class="wine-name">Optimum, Novus Mantinela, Tripolis 2023</span><span class="wine-price">44</span></li>
+          <li><span class="wine-name">Sideritis Amphorae Single Vineyard, Peloponnese 2024</span><span class="wine-price">46</span></li>
+          <li><span class="wine-name">Skyphos, Assyrtiko, Artisans Vignerons, Naoussa 2023</span><span class="wine-price">50</span></li>
+          <li><span class="wine-name">Malagusia Natur, Tetramythos, Patras 2025</span><span class="wine-price">56</span></li>
+          <li><span class="wine-name">Robola Sarris, Kefalonia 2024</span><span class="wine-price">61</span></li>
+          <li><span class="wine-name">Aôri Muscat of Spina, Crete 2024</span><span class="wine-price">64</span></li>
+          <li><span class="wine-name">Vidiano 'Young Vines', Iliana Malihin, Crete 2024</span><span class="wine-price">78</span></li>
+          <li><span class="wine-name">Nykteri, Assyrtiko, Akra Chryssos, Santorini 2023</span><span class="wine-price">115</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Islands & volcanic</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Catarratto Ciello Bianco, Sicily 2024</span><span class="wine-price">38</span></li>
+          <li><span class="wine-name">Tribbiera Blanc, Domaine Culombu, Corsica 2024</span><span class="wine-price">50</span></li>
+          <li><span class="wine-name">Marabino Muscatedda, Sicily 2024</span><span class="wine-price">55</span></li>
+          <li><span class="wine-name">Son Llebre Blanc, Bodegas Galmes I Ribot, Majorca 2024</span><span class="wine-price">65</span></li>
+          <li><span class="wine-name">Rami Blanco, Cos, Sicily 2024</span><span class="wine-price">66</span></li>
+          <li><span class="wine-name">Suertes del Marques Trenzado, Tenerife 2024</span><span class="wine-price">79</span></li>
+          <li><span class="wine-name">Antonio Maçanita Caracol dos Profetas, Madeira 2024</span><span class="wine-price">93</span></li>
+          <li><span class="wine-name">Jable de Tao, Lanzarote 2023</span><span class="wine-price">99</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Coastal & Mediterranean</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Lo Petit Fantet Hippolyte Blanc, Languedoc 2024</span><span class="wine-price">39</span></li>
+          <li><span class="wine-name">Gaintza Txakolina, Getaria, Spain 2024</span><span class="wine-price">42</span></li>
+          <li><span class="wine-name">La Comarcal Blanco, Valencia 2024</span><span class="wine-price">46</span></li>
+          <li><span class="wine-name">Baby Bandito 'Keep on Punching', Swartland, SA 2024</span><span class="wine-price">49</span></li>
+          <li><span class="wine-name">Sanha Branco, Bairrada, Portugal 2021</span><span class="wine-price">52</span></li>
+          <li><span class="wine-name">I Cacciagalli Aorivola, Campania 2023</span><span class="wine-price">53</span></li>
+          <li><span class="wine-name">Sottobanco Andrea Ochippinti, Lazio 2024</span><span class="wine-price">58</span></li>
+          <li><span class="wine-name">Albariño Nanclares Dandelion, Rías Baixas 2024</span><span class="wine-price">61</span></li>
+          <li><span class="wine-name">Willamette Chardonnay, Kelley Fox, Oregon 2023</span><span class="wine-price">75</span></li>
+          <li><span class="wine-name">Domaine Arretxea 'Hegoxuri', South-West France 2023</span><span class="wine-price">83</span></li>
+          <li><span class="wine-name">Ochota Barrels, The Slint, Chardonnay, Adelaide Hills 2023</span><span class="wine-price">84</span></li>
+          <li><span class="wine-name">Chenin Blanc Beau Rivage, California 2022</span><span class="wine-price">96</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Inland</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Soave Il Selese, I Stefanini, Veneto 2024</span><span class="wine-price">43</span></li>
+          <li><span class="wine-name">Grüner Veltliner, MA Arndorfer Mitges, Kamptal 2024</span><span class="wine-price">46</span></li>
+          <li><span class="wine-name">Georg Breuer Rüdesheim Riesling, Rheingau 2023</span><span class="wine-price">68</span></li>
+          <li><span class="wine-name">Martin Müllen Riesling Spätlese Trocken, Mosel 2022</span><span class="wine-price">72</span></li>
+          <li><span class="wine-name">Côtes du Jura 'Savadonnay', Croix & Courbet 2022</span><span class="wine-price">86</span></li>
+          <li><span class="wine-name">Jura 'Face B' Savagnin, Arbois 2023</span><span class="wine-price">110</span></li>
+          <li><span class="wine-name">Fendant Coteaux de Plamont, Chappaz, Valais 2023</span><span class="wine-price">122</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Classics</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Rioja Blanco, Señorío de Librares 2024</span><span class="wine-price">43</span></li>
+          <li><span class="wine-name">C de Sec Château Closiot, J M Guffens, Bordeaux 2023</span><span class="wine-price">47</span></li>
+          <li><span class="wine-name">Muscadet Sur Lie Domaine La Pepière, Loire 2024</span><span class="wine-price">50</span></li>
+          <li><span class="wine-name">Mâcon-Dabayé, Domaine Cheveau, Burgundy 2024</span><span class="wine-price">62</span></li>
+          <li><span class="wine-name">Chablis Mosnier, Burgundy 2024</span><span class="wine-price">75</span></li>
+          <li><span class="wine-name">Sancerre, Didier Raimbault, Loire 2024</span><span class="wine-price">79</span></li>
+          <li><span class="wine-name">Saint-Véran Climat, Cuvée Ovoïde, Burgundy 2022</span><span class="wine-price">105</span></li>
+          <li><span class="wine-name">Puligny-Montrachet, Paul Pernot, Burgundy 2024</span><span class="wine-price">140</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Skin contact</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">ZVARI Rkatsiteli, John Okurashvili, Kakheti, Georgia 2023</span><span class="wine-price">43</span></li>
+          <li><span class="wine-name">Phoenix, Merwah, Quannboubine, Lebanon 2023</span><span class="wine-price">59</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Rosé</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Château d'Ollières, Coteaux Varois, Provence 2024</span><span class="wine-price">48</span></li>
+          <li><span class="wine-name">Rosalto, Audarya, Sardinia 2024</span><span class="wine-price">55</span></li>
+        </ul>
+      </div>
+
+      <!-- Red -->
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Bottles · Red</span>
+          <h2 class="display-md">Red wines.</h2>
+        </div>
+
+        <div class="menu-subhead"><span class="eyebrow green">Greece</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Three Bowls Xinomavro, Naoussa 2023</span><span class="wine-price">37</span></li>
+          <li><span class="wine-name">Mylonas Merlot Agiorgitiko Mandilaria, Keratea 2024</span><span class="wine-price">47</span></li>
+          <li><span class="wine-name">'Dafnio' PDO Liatiko, Douloufakis, Crete 2022</span><span class="wine-price">49</span></li>
+          <li><span class="wine-name">Xinomavro Jeunes Vignes, Thymiopoulos, Macedonia 2024</span><span class="wine-price">55</span></li>
+          <li><span class="wine-name">Seira #3 Georgas Family, Spata 2022</span><span class="wine-price">63</span></li>
+          <li><span class="wine-name">Shadow Play PGI, Kamara Estate, Thessaloniki 2021</span><span class="wine-price">69</span></li>
+          <li><span class="wine-name">Megali Petra Mavrodafni, Kefalonia 2024</span><span class="wine-price">78</span></li>
+          <li><span class="wine-name">Liatiko Iliana Malihin, Crete 2024</span><span class="wine-price">92</span></li>
+          <li><span class="wine-name">Mavrotragano, Hatzidakis, Santorini 2022</span><span class="wine-price">130</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Islands & volcanic</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Cannonau Sartiu, Giuseppe Sedilesu, Sardinia 2022</span><span class="wine-price">49</span></li>
+          <li><span class="wine-name">Tradición Listan Negro, Bodega Tajinaste, Tenerife 2023</span><span class="wine-price">54</span></li>
+          <li><span class="wine-name">Eduardo Torres Versante Nord IGT, Sicily 2022</span><span class="wine-price">61</span></li>
+          <li><span class="wine-name">Nero di Lupo COS, Sicily 2024</span><span class="wine-price">62</span></li>
+          <li><span class="wine-name">Marabino Terre Calcarea, Sicily 2022</span><span class="wine-price">64</span></li>
+          <li><span class="wine-name">Soca-Rel Escurçac, Mallorca 2023</span><span class="wine-price">65</span></li>
+          <li><span class="wine-name">4 Kilos 12 Volts, Majorca 2023</span><span class="wine-price">69</span></li>
+          <li><span class="wine-name">Bien de Altura Ikewen, Canary Islands 2023</span><span class="wine-price">78</span></li>
+          <li><span class="wine-name">Domaine Giudicelli, Patrimonio, Corsica 2021</span><span class="wine-price">118</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Coastal & Mediterranean</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Rafael Cambra Soplo, Valencia</span><span class="wine-price">38</span></li>
+          <li><span class="wine-name">Joan d'Anguera, Les Maiols, Montsant 2023</span><span class="wine-price">46</span></li>
+          <li><span class="wine-name">Vinhão Tinto Aphros, Vinho Verde 2022</span><span class="wine-price">53</span></li>
+          <li><span class="wine-name">Foxtrot, Domino Vitor/Claro, Alentejo 2023</span><span class="wine-price">62</span></li>
+          <li><span class="wine-name">Frankestein Pinotage, Radford Dale, Stellenbosch 2022</span><span class="wine-price">71</span></li>
+          <li><span class="wine-name">Viticultores Tinto Viuva Gomes, Lisboa 2022</span><span class="wine-price">74</span></li>
+          <li><span class="wine-name">Wirth Zinfandel, Broc Cellars, California 2022</span><span class="wine-price">77</span></li>
+          <li><span class="wine-name">Celler Pardas Collita Roja, Penedès 2017</span><span class="wine-price">84</span></li>
+          <li><span class="wine-name">Scar of the Sea Pinot Noir, Santa Maria Valley 2024</span><span class="wine-price">85</span></li>
+          <li><span class="wine-name">Boaz Red, Ruth Lewandowski, California 2020</span><span class="wine-price">86</span></li>
+          <li><span class="wine-name">Syrah No 2 Place of Changing Winds, Victoria 2023</span><span class="wine-price">87</span></li>
+          <li><span class="wine-name">Phelan Pharm Pinot Noir, San Luis Obispo 2024</span><span class="wine-price">137</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Inland</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Côtes du Rhône 'Les Oliviers' 2024</span><span class="wine-price">39</span></li>
+          <li><span class="wine-name">Envínate Albahra, Almansa 2024</span><span class="wine-price">48</span></li>
+          <li><span class="wine-name">Blaufrankisch Judith Beck, Burgenland 2023</span><span class="wine-price">52</span></li>
+          <li><span class="wine-name">Cahors, Château Combel La Serre 2021</span><span class="wine-price">65</span></li>
+          <li><span class="wine-name">Le Glanon Trousseau, Arbois-Pupillin, Jura 2023</span><span class="wine-price">73</span></li>
+          <li><span class="wine-name">Picaro del Aguila Ribera del Duero 2022</span><span class="wine-price">82</span></li>
+          <li><span class="wine-name">Fleurie Poncie, Philippe Viet, Beaujolais 2023</span><span class="wine-price">85</span></li>
+          <li><span class="wine-name">Saint-Joseph, Monier Perreol Tradition, Rhône 2023</span><span class="wine-price">86</span></li>
+          <li><span class="wine-name">Pinot Noir Querbach, Rheingau 2007</span><span class="wine-price">91</span></li>
+          <li><span class="wine-name">Carmignano DOCG, Terre a Mano, Tuscany 2021</span><span class="wine-price">95</span></li>
+          <li><span class="wine-name">Vínsobres L'Exception Vallot, Rhône 2019</span><span class="wine-price">97</span></li>
+          <li><span class="wine-name">Syrah 'Cuvée Spéciale', Christophe Abbet, Valais 2018</span><span class="wine-price">123</span></li>
+        </ul>
+
+        <div class="menu-subhead"><span class="eyebrow green">Classics</span></div>
+        <ul class="menu-list wine-list">
+          <li><span class="wine-name">Faugères Domaine du Météore, Languedoc 2022</span><span class="wine-price">45</span></li>
+          <li><span class="wine-name">Montepulciano Giani Masciarelli, Abruzzo 2021</span><span class="wine-price">46</span></li>
+          <li><span class="wine-name">Marcillac 'Fer de Soif', Lionel Osmin 2023</span><span class="wine-price">55</span></li>
+          <li><span class="wine-name">Langhe Nebbiolo Ferdinando Principiano, Piemonte 2023</span><span class="wine-price">58</span></li>
+          <li><span class="wine-name">Primitivo Gioia del Colle Fatalone, Puglia 2024</span><span class="wine-price">62</span></li>
+          <li><span class="wine-name">Château Bonnange, Bordeaux 2020</span><span class="wine-price">65</span></li>
+          <li><span class="wine-name">Lindes de Remelluri Labastida, Rioja 2021</span><span class="wine-price">68</span></li>
+          <li><span class="wine-name">Candialle Riserva Chianti Classico, Tuscany 2019</span><span class="wine-price">78</span></li>
+          <li><span class="wine-name">Beaune Clos de Dessus des Marconnets, Burgundy 2024</span><span class="wine-price">110</span></li>
+          <li><span class="wine-name">Château Beau-Séjour Bécot, Saint-Émilion Grand Cru 2011</span><span class="wine-price">180</span></li>
+        </ul>
+      </div>
+
+      </div><!-- /data-live wine-list -->
+
+      <p class="menu-note">Please ask for our full list of rarer wines and larger formats. All vintages subject to availability.</p>
+    </div>
+  </section>
+
+  <!-- Drinks -->
+  <section class="menu-panel" id="drinks" role="tabpanel">
+    <div class="container">
+
+      <p class="wine-intro reveal">
+        Cocktails and mocktails inspired by the Greek pantry, alongside Hellenic craft beers, digestives, and a quiet corner for those who like sherry with snacks.
+      </p>
+
+      <div class="menu-section-two-col">
+        <div class="menu-section">
+          <div class="menu-section-head">
+            <span class="eyebrow green">Cocktails</span>
+            <h2 class="display-md">Cocktails.</h2>
+          </div>
+          <ul class="menu-list">
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">White Sangria</span>
+                <span class="dish-desc">White wine, lychee, fresh strawberry & apple</span>
+              </div>
+              <span class="dish-price">10</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Greek Negroni</span>
+                <span class="dish-desc">Gin, Otto's Athens Vermouth, Campari</span>
+              </div>
+              <span class="dish-price">12</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Blood Orange Margarita</span>
+                <span class="dish-desc">Tequila, lime, blood orange</span>
+              </div>
+              <span class="dish-price">12</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Saint Torini</span>
+                <span class="dish-desc">Vanilla vodka, lavender, lemon juice</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Passion Fruit Pisco Sour</span>
+                <span class="dish-desc">Pisco, passion fruit, syrup</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Cherry Whiskey Sour</span>
+                <span class="dish-desc">Bourbon, cherry liqueur, lemon juice</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Jalapeño Mezcal</span>
+                <span class="dish-desc">Mezcal, fresh jalapeño, lava salt</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Green Greek</span>
+                <span class="dish-desc">Mastiqua, gin, cucumber, lychee</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Vesper Martini</span>
+                <span class="dish-desc">Gin, vodka, vermouth</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+            <li>
+              <div class="dish-details">
+                <span class="dish-name">Paper Plane</span>
+                <span class="dish-desc">Bourbon, Amaro Montenegro, Aperol</span>
+              </div>
+              <span class="dish-price">15</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="menu-section">
+            <div class="menu-section-head">
+              <span class="eyebrow green">Mocktails</span>
+              <h2 class="display-md">Without alcohol.</h2>
+            </div>
+            <ul class="menu-list">
+              <li>
+                <div class="dish-details">
+                  <span class="dish-name">Coconut Lemonade</span>
+                  <span class="dish-desc">Coconut cream, lemon juice, agave</span>
+                </div>
+                <span class="dish-price">10</span>
+              </li>
+              <li>
+                <div class="dish-details">
+                  <span class="dish-name">Hibiscus Portokali</span>
+                  <span class="dish-desc">Fresh hibiscus juice & orange juice</span>
+                </div>
+                <span class="dish-price">10</span>
+              </li>
+              <li>
+                <div class="dish-details">
+                  <span class="dish-name">Clio's Garden</span>
+                  <span class="dish-desc">Apple juice, elderflower cordial, cucumber, mint</span>
+                </div>
+                <span class="dish-price">10</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="menu-section">
+            <div class="menu-section-head">
+              <span class="eyebrow green">Beers</span>
+              <h2 class="display-md">Beer.</h2>
+              <p class="glass-note small">330ml</p>
+            </div>
+            <ul class="menu-list">
+              <li><span class="dish-name">Septem Mylos 1888 Lager <span class="abv">4.6%</span></span><span class="dish-dots"></span><span class="dish-price">7.5</span></li>
+              <li><span class="dish-name">Septem Monday's Pilsner <span class="abv">5.0%</span></span><span class="dish-dots"></span><span class="dish-price">7.5</span></li>
+              <li><span class="dish-name">Septem 8th Day IPA <span class="abv">7.0%</span></span><span class="dish-dots"></span><span class="dish-price">7.5</span></li>
+              <li><span class="dish-name">Septem Saturday's Porter <span class="abv">5.5%</span></span><span class="dish-dots"></span><span class="dish-price">7.5</span></li>
+              <li><span class="dish-name">Lucky Saint <span class="abv">0.3%</span></span><span class="dish-dots"></span><span class="dish-price">6</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <div class="menu-section-head">
+          <span class="eyebrow green">Dessert cocktails & digestives</span>
+          <h2 class="display-md">To finish.</h2>
+        </div>
+        <div class="menu-section-two-col">
+          <ul class="menu-list">
+            <li><span class="dish-name">Lemon Meringue Cocktail</span><span class="dish-dots"></span><span class="dish-price">15</span></li>
+            <li><span class="dish-name">Mastiha Espresso Martini</span><span class="dish-dots"></span><span class="dish-price">15</span></li>
+            <li><span class="dish-name">Ouzo #7 Tetteris, Chios</span><span class="dish-dots"></span><span class="dish-price">10</span></li>
+            <li><span class="dish-name">Metaxa Grande Fine</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+            <li><span class="dish-name">Skinos Dark Mastiha & Coffee Bitter</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+            <li><span class="dish-name">Meukow V.S.O.P Cognac</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+            <li><span class="dish-name">Baron de Sigognac VSOP Armagnac</span><span class="dish-dots"></span><span class="dish-price">14</span></li>
+            <li><span class="dish-name">Père Magloire Fine VS Calvados</span><span class="dish-dots"></span><span class="dish-price">12</span></li>
+          </ul>
+          <ul class="menu-list">
+            <li><span class="dish-name">Royal Salute 21 years Whisky</span><span class="dish-dots"></span><span class="dish-price">30</span></li>
+            <li><span class="dish-name">Suntory Hibiki Harmony Whisky</span><span class="dish-dots"></span><span class="dish-price">22</span></li>
+            <li><span class="dish-name">Deadhead Aged 6 years Rum</span><span class="dish-dots"></span><span class="dish-price">15</span></li>
+            <li><span class="dish-name">Clase Azul Tequila Reposado</span><span class="dish-dots"></span><span class="dish-price">30</span></li>
+            <li><span class="dish-name">Amaro Nonino Quintessentia di Erbe</span><span class="dish-dots"></span><span class="dish-price">11</span></li>
+            <li><span class="dish-name">Poire Williams Briottet</span><span class="dish-dots"></span><span class="dish-price">14</span></li>
+            <li><span class="dish-name">Ponche Caribe Pistachio Liqueur</span><span class="dish-dots"></span><span class="dish-price">8</span></li>
+            <li><span class="dish-name">Chambord Black Raspberry</span><span class="dish-dots"></span><span class="dish-price">10</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="menu-note">All spirits 50ml unless otherwise stated.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-cta bg-green-deep">
+    <div class="container text-centre">
+      <div class="reveal">
+        <span class="eyebrow">Book a table</span>
+        <h2 class="display-lg" style="margin: 1.5rem 0 2.5rem;">Come and try it.</h2>
+        <a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener" class="btn btn-ghost-light">Reserve on OpenTable <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../assets/images/logo-white.webp" alt="Clio" />
+          <p>Modern Greek cooking, in the heart of Marylebone.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="/visit/">Address & hours</a></li>
+            <li><a href="https://www.opentable.com/r/clio-restaurant-london" target="_blank" rel="noopener">Reserve</a></li>
+            <li><a href="/private-dining/">Private dining</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/menus/">Menus</a></li>
+            <li><a href="/gallery/">Gallery</a></li>
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/clio.london/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="tel:+442046377813">020 4637 7813</a></li>
+            <li><a href="mailto:hello@cliorestaurant.co.uk">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Clio Restaurant</span>
+        <span>Designed by <a href="https://www.thewonderagency.co/" target="_blank" rel="noopener" class="footer-attribution">The Wonder Agency</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=3"></script>
+  <script src="../assets/js/menus.js?v=3"></script>
+  <script src="../assets/js/live-content.js?v=1"></script>
+</body>
+</html>
