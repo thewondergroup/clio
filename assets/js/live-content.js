@@ -368,7 +368,7 @@ function renderFaqs(items, container) {
   const html = faqs
     .map(
       (f) => `
-    <details class="faq reveal">
+    <details class="faq">
       <summary><span>${escapeHtml(f.question)}</span><span class="faq-icon">+</span></summary>
       <div class="faq-body"><p>${linkify(escapeHtml(f.answer || ""))}</p></div>
     </details>`
