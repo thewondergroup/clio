@@ -19,6 +19,8 @@ const SHEETS = {
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1300062983&single=true&output=csv",
   faqs:
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1701402900&single=true&output=csv",
+  cocktails:
+    "REPLACE_WITH_COCKTAILS_CSV_URL",
 };
 
 const FETCH_TIMEOUT_MS = 4000;
@@ -151,6 +153,50 @@ function renderFoodMenu(items, container) {
         : "";
       html.push(
         `<li><span class="dish-name">${escapeHtml(d.name)}${desc}</span><span class="dish-dots"></span>${price}</li>`
+      );
+    });
+    html.push("</ul>");
+    html.push("</div>");
+  });
+
+  container.innerHTML = html.join("");
+}
+
+/**
+ * Cocktails — similar to food menu, with description rendered alongside dish name.
+ * Sections: Cocktails, Mocktails, Beers, Dessert cocktails.
+ */
+function renderCocktails(items, container) {
+  const sections = groupBySection(items);
+  if (!sections.size) throw new Error("No cocktail items");
+
+  const html = [];
+  sections.forEach((drinks, sectionName) => {
+    const parts = sectionName.split("·").map((s) => s.trim());
+    const eyebrow = parts[0];
+    const titleText = parts[1] || parts[0];
+
+    html.push('<div class="menu-section">');
+    html.push('<div class="menu-section-head">');
+    html.push(`<span class="eyebrow green">${escapeHtml(eyebrow)}</span>`);
+    html.push(`<h2 class="display-md">${escapeHtml(titleText)}.</h2>`);
+    html.push("</div>");
+    html.push('<ul class="menu-list">');
+    drinks.forEach((d) => {
+      if (!d.name) return;
+      const price = d.price ? `<span class="dish-price">${escapeHtml(d.price)}</span>` : "";
+      const desc = d.description
+        ? `<span class="dish-desc">${escapeHtml(d.description)}</span>`
+        : "";
+      html.push(
+        `<li>
+          <div class="dish-details">
+            <span class="dish-name">${escapeHtml(d.name)}</span>
+            ${desc}
+          </div>
+          <span class="dish-dots"></span>
+          ${price}
+        </li>`
       );
     });
     html.push("</ul>");
@@ -405,6 +451,18 @@ async function initFaqs() {
   }
 }
 
+async function initCocktails() {
+  const container = document.querySelector('[data-live="cocktails"]');
+  if (!container) return;
+  if (!SHEETS.cocktails || SHEETS.cocktails.startsWith("REPLACE_")) return;
+  try {
+    const data = await fetchCSV(SHEETS.cocktails);
+    renderCocktails(data, container);
+  } catch (err) {
+    console.warn("Cocktails failed to load from Sheet, using fallback:", err);
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Run on DOM ready
    --------------------------------------------------------------------------- */
@@ -415,6 +473,7 @@ if (document.readyState === "loading") {
     initHours();
     initHoursSummary();
     initFaqs();
+    initCocktails();
   });
 } else {
   initFoodMenu();
@@ -422,4 +481,5 @@ if (document.readyState === "loading") {
   initHours();
   initHoursSummary();
   initFaqs();
+  initCocktails();
 }
