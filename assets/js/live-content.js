@@ -17,6 +17,8 @@ const SHEETS = {
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1241872791&single=true&output=csv",
   hours:
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1300062983&single=true&output=csv",
+  faqs:
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1701402900&single=true&output=csv",
 };
 
 const FETCH_TIMEOUT_MS = 4000;
@@ -294,6 +296,43 @@ function renderHoursSummary(rows, container) {
   container.innerHTML = summaryHtml;
 }
 
+/**
+ * FAQs — renders question/answer pairs as <details> elements
+ * matching the existing .faq markup.
+ */
+function renderFaqs(items, container) {
+  const faqs = items.filter((f) => f.question && f.question.trim());
+  if (!faqs.length) throw new Error("No FAQs");
+
+  const html = faqs
+    .map(
+      (f) => `
+    <details class="faq reveal">
+      <summary><span>${escapeHtml(f.question)}</span><span class="faq-icon">+</span></summary>
+      <div class="faq-body"><p>${linkify(escapeHtml(f.answer || ""))}</p></div>
+    </details>`
+    )
+    .join("");
+
+  container.innerHTML = html;
+}
+
+/**
+ * Very small helper — turns email addresses and URLs in plain text into links.
+ * Runs after escapeHtml so HTML is safe.
+ */
+function linkify(html) {
+  return html
+    .replace(
+      /(\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b)/g,
+      '<a href="mailto:$1">$1</a>'
+    )
+    .replace(
+      /(\bhttps?:\/\/[^\s<]+)/g,
+      '<a href="$1" target="_blank" rel="noopener">$1</a>'
+    );
+}
+
 /* ---------------------------------------------------------------------------
    Utility
    --------------------------------------------------------------------------- */
@@ -354,6 +393,18 @@ async function initHoursSummary() {
   }
 }
 
+async function initFaqs() {
+  const container = document.querySelector('[data-live="faqs"]');
+  if (!container) return;
+  if (!SHEETS.faqs || SHEETS.faqs.startsWith("REPLACE_")) return;
+  try {
+    const data = await fetchCSV(SHEETS.faqs);
+    renderFaqs(data, container);
+  } catch (err) {
+    console.warn("FAQs failed to load from Sheet, using fallback:", err);
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Run on DOM ready
    --------------------------------------------------------------------------- */
@@ -363,10 +414,12 @@ if (document.readyState === "loading") {
     initWineList();
     initHours();
     initHoursSummary();
+    initFaqs();
   });
 } else {
   initFoodMenu();
   initWineList();
   initHours();
   initHoursSummary();
+  initFaqs();
 }
