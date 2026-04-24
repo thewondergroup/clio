@@ -234,6 +234,66 @@ function renderHours(rows, container) {
   container.innerHTML = html.join("");
 }
 
+/**
+ * Compact one-paragraph summary for use in the homepage hours block.
+ * Chooses a smart phrasing based on whether all days share hours.
+ */
+function renderHoursSummary(rows, container) {
+  if (!rows.length) throw new Error("No hours data");
+
+  const allSame =
+    rows.length > 1 &&
+    rows.every(
+      (r) => r.lunch === rows[0].lunch && r.dinner === rows[0].dinner
+    );
+
+  // Shorthand a time string like "12:00 – 15:00" → "12–3pm"
+  const shortenTime = (t) => {
+    if (!t) return "";
+    // Match "12:00 – 15:00" style
+    const m = t.match(/^(\d{1,2}):?(\d{0,2})\s*[–-]\s*(\d{1,2}):?(\d{0,2})/);
+    if (!m) return t;
+    const h1 = parseInt(m[1], 10);
+    const h2 = parseInt(m[3], 10);
+    const fmt = (h) => {
+      if (h === 0 || h === 24) return "12am";
+      if (h < 12) return `${h}am`;
+      if (h === 12) return "12pm";
+      return `${h - 12}pm`;
+    };
+    return `${fmt(h1)}–${fmt(h2)}`;
+  };
+
+  let summaryHtml = "";
+
+  if (allSame) {
+    const r = rows[0];
+    const lunch = r.lunch && r.lunch.toLowerCase() !== "closed" ? shortenTime(r.lunch) : "";
+    const dinner = r.dinner && r.dinner.toLowerCase() !== "closed" ? shortenTime(r.dinner) : "";
+    const services = [];
+    if (lunch) services.push(`Lunch ${lunch}`);
+    if (dinner) services.push(`Dinner ${dinner}`);
+    summaryHtml = `<p>Open every day<br/>${services.join(" · ")}</p>`;
+  } else {
+    // Fallback for varying days: just list the first day's hours and point to visit page
+    const openDays = rows.filter(
+      (r) =>
+        (r.lunch && r.lunch.toLowerCase() !== "closed") ||
+        (r.dinner && r.dinner.toLowerCase() !== "closed")
+    );
+    if (openDays.length === 0) {
+      summaryHtml = `<p>Please see our visit page for opening hours</p>`;
+    } else {
+      const first = openDays[0].day || "";
+      const last = openDays[openDays.length - 1].day || "";
+      const range = first === last ? first : `${first} – ${last}`;
+      summaryHtml = `<p>${escapeHtml(range)}<br/>Lunch · Dinner</p>`;
+    }
+  }
+
+  container.innerHTML = summaryHtml;
+}
+
 /* ---------------------------------------------------------------------------
    Utility
    --------------------------------------------------------------------------- */
@@ -283,6 +343,17 @@ async function initHours() {
   }
 }
 
+async function initHoursSummary() {
+  const container = document.querySelector('[data-live="hours-summary"]');
+  if (!container) return;
+  try {
+    const data = await fetchCSV(SHEETS.hours);
+    renderHoursSummary(data, container);
+  } catch (err) {
+    console.warn("Hours summary failed to load from Sheet, using fallback:", err);
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Run on DOM ready
    --------------------------------------------------------------------------- */
@@ -291,9 +362,11 @@ if (document.readyState === "loading") {
     initFoodMenu();
     initWineList();
     initHours();
+    initHoursSummary();
   });
 } else {
   initFoodMenu();
   initWineList();
   initHours();
+  initHoursSummary();
 }
