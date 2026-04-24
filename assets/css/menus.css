@@ -1,11 +1,14 @@
 /* Menus page */
 
 .menus-intro {
-  padding: calc(var(--space-xl) + 5rem) 0 var(--space-lg);
+  padding: var(--space-lg) 0;
 }
 
-.menus-intro h1 {
-  margin: 1.5rem 0 0;
+.menus-seasonal-note {
+  padding: var(--space-md) var(--gutter);
+  color: var(--clio-mute);
+  font-style: italic;
+  font-size: 0.875rem;
 }
 
 /* Tabs */
@@ -191,6 +194,15 @@
   font-style: italic;
   color: var(--clio-green-soft);
   font-size: 1.0625rem;
+}
+
+.wine-meta {
+  display: block;
+  color: var(--clio-green-soft);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9375rem;
+  margin-top: 0.125rem;
 }
 
 .wine-price {
