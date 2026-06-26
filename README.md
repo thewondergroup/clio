@@ -83,7 +83,7 @@ No build step required. All assets are relative and load as pure static files.
 
 - **Google Fonts** — Cormorant Garamond + Inter, loaded via CDN
 - **Google Maps** — embedded iframe on `visit.html`, link opens `maps.app.goo.gl/aXBzYSzXdha7Y4KW9`
-- **OpenTable** — booking button links to `https://www.opentable.com/r/clio-restaurant-london`
+- **OpenTable** — booking button links to `https://www.opentable.co.uk/r/clio-restaurant-reservations-london?restref=470940&lang=en-GB&ot_source=Restaurant%20website`
 - **Instagram** — footer and gallery page link to `https://www.instagram.com/clio.london/`
 
 ## Notes on editing
