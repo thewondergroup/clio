@@ -21,6 +21,8 @@ const SHEETS = {
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1701402900&single=true&output=csv",
   cocktails:
     "REPLACE_WITH_COCKTAILS_CSV_URL",
+  setLunch:
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1968464026&single=true&output=csv",
 };
 
 const FETCH_TIMEOUT_MS = 4000;
@@ -204,6 +206,81 @@ function renderCocktails(items, container) {
   });
 
   container.innerHTML = html.join("");
+}
+
+/**
+ * Set Lunch — handles special meta rows for headline and pricing, then menu sections.
+ * Returns { hasDishes: true/false } so the caller can hide the tab if empty.
+ */
+function renderSetLunch(items, container) {
+  // Separate meta rows from menu rows
+  const meta = {};
+  const menuRows = [];
+  items.forEach((r) => {
+    if (!r.section) return;
+    if (r.section === "_offer_headline") {
+      meta.headline = r.name || "";
+      meta.subhead = r.description || "";
+    } else if (r.section === "_offer_pricing") {
+      meta.pricing = r.name || "";
+    } else {
+      menuRows.push(r);
+    }
+  });
+
+  const menuSections = groupBySection(menuRows);
+  const hasDishes = menuSections.size > 0;
+
+  if (!hasDishes && !meta.headline) {
+    // Nothing to show
+    return { hasDishes: false };
+  }
+
+  const html = [];
+
+  // Offer header block
+  html.push('<div class="set-lunch-header">');
+  if (meta.headline) {
+    html.push('<div class="menu-section-head">');
+    html.push(`<span class="eyebrow green">Offer</span>`);
+    html.push(`<h2 class="display-md">${escapeHtml(meta.headline)}.</h2>`);
+    if (meta.subhead) {
+      html.push(`<p class="set-lunch-availability">${escapeHtml(meta.subhead)}</p>`);
+    }
+    if (meta.pricing) {
+      html.push(`<p class="set-lunch-pricing">${escapeHtml(meta.pricing)}</p>`);
+    }
+    html.push("</div>");
+  }
+  html.push("</div>");
+
+  // Menu sections
+  menuSections.forEach((dishes, sectionName) => {
+    html.push('<div class="menu-section">');
+    html.push('<div class="menu-section-head">');
+    html.push(`<span class="eyebrow green">${escapeHtml(sectionName)}</span>`);
+    html.push("</div>");
+    html.push('<ul class="menu-list">');
+    dishes.forEach((d) => {
+      if (!d.name) return;
+      const desc = d.description
+        ? `<span class="dish-desc">${escapeHtml(d.description)}</span>`
+        : "";
+      html.push(
+        `<li>
+          <div class="dish-details">
+            <span class="dish-name">${escapeHtml(d.name)}</span>
+            ${desc}
+          </div>
+        </li>`
+      );
+    });
+    html.push("</ul>");
+    html.push("</div>");
+  });
+
+  container.innerHTML = html.join("");
+  return { hasDishes };
 }
 
 function renderWineList(items, container) {
@@ -479,6 +556,64 @@ async function initCocktails() {
   }
 }
 
+async function initSetLunch() {
+  const container = document.querySelector('[data-live="set-lunch"]');
+  if (!container) return;
+  if (!SHEETS.setLunch || SHEETS.setLunch.startsWith("REPLACE_")) return;
+
+  const tabButton = document.querySelector('[data-live-tab="set-lunch"]');
+  const tabPanel = document.querySelector('[data-live-panel="set-lunch"]');
+  const homepagePromo = document.querySelector('[data-live="set-lunch-promo"]');
+
+  try {
+    const data = await fetchCSV(SHEETS.setLunch);
+    const result = renderSetLunch(data, container);
+    if (result && result.hasDishes) {
+      // Reveal the tab and panel
+      if (tabButton) tabButton.hidden = false;
+      if (tabPanel) tabPanel.hidden = false;
+      // Reveal the homepage promo if it exists
+      if (homepagePromo) {
+        homepagePromo.hidden = false;
+        renderSetLunchPromo(data, homepagePromo);
+      }
+      console.log("Set Lunch loaded from Sheet");
+    } else {
+      console.log("Set Lunch sheet is empty; keeping tab hidden");
+    }
+  } catch (err) {
+    console.warn("Set Lunch failed to load from Sheet:", err);
+  }
+}
+
+/**
+ * Homepage promo — compact card with headline, availability, pricing.
+ */
+function renderSetLunchPromo(items, container) {
+  const meta = {};
+  items.forEach((r) => {
+    if (r.section === "_offer_headline") {
+      meta.headline = r.name || "";
+      meta.subhead = r.description || "";
+    } else if (r.section === "_offer_pricing") {
+      meta.pricing = r.name || "";
+    }
+  });
+
+  if (!meta.headline) return;
+
+  const html = `
+    <div class="set-lunch-promo-inner">
+      <span class="eyebrow" style="color: var(--clio-terracotta);">Currently on offer</span>
+      <h2 class="display-md" style="margin: 1rem 0 0.75rem;">${escapeHtml(meta.headline)}.</h2>
+      ${meta.pricing ? `<p class="set-lunch-promo-pricing">${escapeHtml(meta.pricing)}</p>` : ""}
+      ${meta.subhead ? `<p class="set-lunch-promo-avail">${escapeHtml(meta.subhead)}</p>` : ""}
+      <a href="/menus/#set-lunch" class="btn btn-outline" style="margin-top: 1.5rem;">See the menu <span class="arrow">→</span></a>
+    </div>
+  `;
+  container.innerHTML = html;
+}
+
 /* ---------------------------------------------------------------------------
    Run on DOM ready
    --------------------------------------------------------------------------- */
@@ -490,6 +625,7 @@ if (document.readyState === "loading") {
     initHoursSummary();
     initFaqs();
     initCocktails();
+    initSetLunch();
   });
 } else {
   initFoodMenu();
@@ -498,4 +634,5 @@ if (document.readyState === "loading") {
   initHoursSummary();
   initFaqs();
   initCocktails();
+  initSetLunch();
 }
