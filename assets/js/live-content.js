@@ -558,28 +558,37 @@ async function initCocktails() {
 
 async function initSetLunch() {
   const container = document.querySelector('[data-live="set-lunch"]');
-  if (!container) return;
-  if (!SHEETS.setLunch || SHEETS.setLunch.startsWith("REPLACE_")) return;
-
+  const homepagePromo = document.querySelector('[data-live="set-lunch-promo"]');
+  const navLinks = document.querySelectorAll('[data-live-nav="set-lunch"]');
   const tabButton = document.querySelector('[data-live-tab="set-lunch"]');
   const tabPanel = document.querySelector('[data-live-panel="set-lunch"]');
-  const homepagePromo = document.querySelector('[data-live="set-lunch-promo"]');
+
+  // If nothing on this page cares about Set Lunch, exit early
+  if (!container && !homepagePromo && !navLinks.length) return;
+  if (!SHEETS.setLunch || SHEETS.setLunch.startsWith("REPLACE_")) return;
 
   try {
     const data = await fetchCSV(SHEETS.setLunch);
-    const result = renderSetLunch(data, container);
-    if (result && result.hasDishes) {
-      // Reveal the tab and panel
+
+    // Check if there are actual dishes (not just meta rows)
+    const dishCount = data.filter(
+      (r) => r.section && !r.section.startsWith("_offer_") && r.name
+    ).length;
+
+    if (dishCount > 0) {
+      // Reveal everything Set Lunch related on this page
+      navLinks.forEach((el) => (el.hidden = false));
       if (tabButton) tabButton.hidden = false;
       if (tabPanel) tabPanel.hidden = false;
-      // Reveal the homepage promo if it exists
-      if (homepagePromo) {
-        homepagePromo.hidden = false;
-        renderSetLunchPromo(data, homepagePromo);
-      }
-      console.log("Set Lunch loaded from Sheet");
+      if (homepagePromo) homepagePromo.hidden = false;
+
+      // Render into whichever containers exist on this page
+      if (container) renderSetLunch(data, container);
+      if (homepagePromo) renderSetLunchPromo(data, homepagePromo);
+
+      console.log(`Set Lunch loaded from Sheet: ${dishCount} dishes`);
     } else {
-      console.log("Set Lunch sheet is empty; keeping tab hidden");
+      console.log("Set Lunch sheet is empty; keeping hidden");
     }
   } catch (err) {
     console.warn("Set Lunch failed to load from Sheet:", err);
@@ -587,7 +596,7 @@ async function initSetLunch() {
 }
 
 /**
- * Homepage promo — compact card with headline, availability, pricing.
+ * Homepage promo — menu-style section with image, headline, availability, pricing, CTA.
  */
 function renderSetLunchPromo(items, container) {
   const meta = {};
@@ -603,12 +612,18 @@ function renderSetLunchPromo(items, container) {
   if (!meta.headline) return;
 
   const html = `
-    <div class="set-lunch-promo-inner">
-      <span class="eyebrow" style="color: var(--clio-terracotta);">Currently on offer</span>
-      <h2 class="display-md" style="margin: 1rem 0 0.75rem;">${escapeHtml(meta.headline)}.</h2>
-      ${meta.pricing ? `<p class="set-lunch-promo-pricing">${escapeHtml(meta.pricing)}</p>` : ""}
-      ${meta.subhead ? `<p class="set-lunch-promo-avail">${escapeHtml(meta.subhead)}</p>` : ""}
-      <a href="/menus/#set-lunch" class="btn btn-outline" style="margin-top: 1.5rem;">See the menu <span class="arrow">→</span></a>
+    <div class="set-lunch-promo-layout">
+      <figure class="set-lunch-promo-image">
+        <img src="assets/images/greek-salad.jpg" alt="Fresh Greek salad — tomato, feta, olives" loading="lazy" />
+      </figure>
+      <div class="set-lunch-promo-text">
+        <span class="eyebrow green">Currently on offer</span>
+        <h2 class="display-lg">${escapeHtml(meta.headline)}.</h2>
+        <hr class="divider" />
+        ${meta.pricing ? `<p class="set-lunch-promo-pricing">${escapeHtml(meta.pricing)}</p>` : ""}
+        ${meta.subhead ? `<p class="lede">${escapeHtml(meta.subhead)}</p>` : ""}
+        <a href="/set-lunch/" class="btn btn-outline" style="margin-top: 1.5rem;">View Set Lunch <span class="arrow">→</span></a>
+      </div>
     </div>
   `;
   container.innerHTML = html;
