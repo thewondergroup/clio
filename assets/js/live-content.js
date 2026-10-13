@@ -25,6 +25,16 @@ const SHEETS = {
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1968464026&single=true&output=csv",
 };
 
+// Events Pack lead capture
+const EVENTS_PACK = {
+  // Paste the Apps Script /exec URL here after deployment
+  endpoint: "REPLACE_WITH_APPS_SCRIPT_URL",
+  // Path to the downloadable PDF
+  pdfUrl: "/assets/downloads/clio-events-pack.pdf",
+  // Filename saved on the user's device
+  filename: "Clio-Events-Pack.pdf",
+};
+
 const FETCH_TIMEOUT_MS = 4000;
 
 /* ---------------------------------------------------------------------------
@@ -629,9 +639,103 @@ function renderSetLunchPromo(items, container) {
   container.innerHTML = html;
 }
 
-/* ---------------------------------------------------------------------------
-   Run on DOM ready
-   --------------------------------------------------------------------------- */
+/**
+ * Events Pack form — handles the download form on the private dining page.
+ *
+ * Behaviour:
+ * 1. On submit, validate email
+ * 2. Trigger the PDF download immediately (best UX — user gets what they came for)
+ * 3. Send the lead details to Google Apps Script in the background
+ * 4. Show a confirmation message
+ *
+ * The download works even if the Apps Script fails. The email/consent capture
+ * is best-effort. This is intentional.
+ */
+function initEventsPackForm() {
+  const form = document.getElementById("events-pack-form");
+  if (!form) return;
+
+  const status = form.querySelector(".events-pack-status");
+  const submitBtn = form.querySelector(".events-pack-submit");
+  const emailInput = form.querySelector("#ep-email");
+
+  function setStatus(text, kind) {
+    status.textContent = text;
+    status.classList.remove("error", "success");
+    if (kind) status.classList.add(kind);
+  }
+
+  function triggerDownload() {
+    // Create a temporary link and click it to start the download
+    const link = document.createElement("a");
+    link.href = EVENTS_PACK.pdfUrl;
+    link.download = EVENTS_PACK.filename;
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  async function sendLead(payload) {
+    if (!EVENTS_PACK.endpoint || EVENTS_PACK.endpoint.startsWith("REPLACE_")) {
+      console.warn("Events pack endpoint not configured; skipping lead capture");
+      return;
+    }
+    try {
+      // Note: Apps Script web apps don't require CORS pre-flight when the
+      // content-type is text/plain, so we send it that way to avoid an OPTIONS
+      // request. The Apps Script parses e.postData.contents as JSON.
+      await fetch(EVENTS_PACK.endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      });
+      console.log("Lead sent");
+    } catch (err) {
+      console.warn("Failed to send lead:", err);
+    }
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    if (!email || !email.includes("@") || !email.includes(".")) {
+      setStatus("Please enter a valid email address.", "error");
+      emailInput.focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    setStatus("Preparing your download…");
+
+    const payload = {
+      email: email,
+      name: form.querySelector("#ep-name").value.trim(),
+      phone: form.querySelector("#ep-phone").value.trim(),
+      marketing_consent: form.querySelector("#ep-consent").checked,
+      user_agent: navigator.userAgent,
+    };
+
+    // Trigger the download first — user gets what they came for even if
+    // the lead capture fails
+    triggerDownload();
+
+    // Send the lead in the background
+    await sendLead(payload);
+
+    setStatus(
+      "Thanks — your download has started. Any questions, drop us a line at hello@cliorestaurant.co.uk.",
+      "success"
+    );
+
+    // Re-enable the button after a moment so they can download again if needed
+    setTimeout(() => {
+      submitBtn.disabled = false;
+    }, 2000);
+  });
+}
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     initFoodMenu();
@@ -641,6 +745,7 @@ if (document.readyState === "loading") {
     initFaqs();
     initCocktails();
     initSetLunch();
+    initEventsPackForm();
   });
 } else {
   initFoodMenu();
@@ -650,4 +755,5 @@ if (document.readyState === "loading") {
   initFaqs();
   initCocktails();
   initSetLunch();
+  initEventsPackForm();
 }

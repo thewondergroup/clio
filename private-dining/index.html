@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-TCW7LKKL');</script>
-  <!-- End Google Tag Manager -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPH1ZK1NV9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TCW7LKKL');</script>
+<!-- End Google Tag Manager -->
 
-    gtag('config', 'G-FPH1ZK1NV9');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Private dining and events at Clio — bespoke Greek menus for celebrations, corporate dinners, and private parties in Marylebone." />
@@ -159,6 +151,7 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+
   <header class="site-header transparent">
     <a href="/" class="logo-link" aria-label="Clio home">
       <img src="../assets/images/logo-white.webp" alt="Clio" class="logo-variant logo-variant-white" />
@@ -229,6 +222,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figure class="offer-image reveal reveal-delay-2">
           <img src="../assets/images/interior-bar.jpg" alt="The bar and dining area at Clio" loading="lazy" />
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events pack download -->
+  <section class="events-pack-section bg-cream">
+    <div class="container">
+      <div class="events-pack-layout">
+        <div class="events-pack-visual reveal">
+          <div class="events-pack-cover">
+            <span class="events-pack-cover-eyebrow">Clio</span>
+            <span class="events-pack-cover-title">Events pack</span>
+            <span class="events-pack-cover-meta">PDF · 2.7MB</span>
+          </div>
+        </div>
+        <div class="events-pack-content reveal reveal-delay-1">
+          <span class="eyebrow green">Download</span>
+          <h2 class="display-md">Take our events pack with you.</h2>
+          <hr class="divider" />
+          <p class="lede">Everything you need to plan an event at Clio — spaces, sample menus, and how we can tailor the evening to you.</p>
+
+          <form class="events-pack-form" id="events-pack-form" novalidate>
+            <div class="events-pack-field">
+              <label for="ep-email">Email <span class="required">*</span></label>
+              <input type="email" id="ep-email" name="email" required autocomplete="email" placeholder="you@example.com" />
+            </div>
+            <div class="events-pack-field-row">
+              <div class="events-pack-field">
+                <label for="ep-name">Name <span class="optional">(optional)</span></label>
+                <input type="text" id="ep-name" name="name" autocomplete="name" />
+              </div>
+              <div class="events-pack-field">
+                <label for="ep-phone">Phone <span class="optional">(optional)</span></label>
+                <input type="tel" id="ep-phone" name="phone" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="events-pack-consent">
+              <label class="checkbox-label">
+                <input type="checkbox" id="ep-consent" name="marketing_consent" />
+                <span>I'm happy to hear from Clio about future events, menus and offers. You can unsubscribe any time.</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary events-pack-submit">
+              <span class="btn-label">Download events pack</span>
+              <span class="arrow">→</span>
+            </button>
+            <p class="events-pack-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
