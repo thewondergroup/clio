@@ -20,7 +20,7 @@ const SHEETS = {
   faqs:
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1701402900&single=true&output=csv",
   cocktails:
-    "REPLACE_WITH_COCKTAILS_CSV_URL",
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1866124573&single=true&output=csv",
   setLunch:
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjQnXCsXfVUyRPiVxyLBVAtTr2VCjyiiZ335Ge071E9d--GWjrhDkNNqEtV9AKvHvaRPMpXRTsc9Om/pub?gid=1968464026&single=true&output=csv",
 };
@@ -88,9 +88,17 @@ function parseCSV(text) {
 
 function rowsToObjects(rows) {
   if (!rows.length) return [];
-  const headers = rows[0].map((h) => h.trim().toLowerCase());
+  // Find the header row rather than assuming it's row 1 — the team may add
+  // blank or title rows above it. Prefer a row containing a known column
+  // name; otherwise use the first row with at least two filled cells.
+  const KNOWN = ["section", "name", "day", "question"];
+  const clean = (r) => r.map((c) => (c || "").trim().toLowerCase());
+  let h = rows.findIndex((r) => clean(r).some((c) => KNOWN.includes(c)));
+  if (h === -1) h = rows.findIndex((r) => clean(r).filter(Boolean).length >= 2);
+  if (h === -1) return [];
+  const headers = clean(rows[h]);
   return rows
-    .slice(1)
+    .slice(h + 1)
     .map((row) => {
       const obj = {};
       headers.forEach((h, i) => {
