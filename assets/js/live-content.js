@@ -183,47 +183,90 @@ function renderFoodMenu(items, container) {
 }
 
 /**
- * Cocktails — similar to food menu, with description rendered alongside dish name.
- * Sections: Cocktails, Mocktails, Beers, Dessert cocktails.
+ * Cocktails — rebuilds the original two-column drinks layout from the sheet.
+ *  - First section (Cocktails) on the left
+ *  - Mocktails, Beers and any other sections stacked on the right
+ *  - Dessert cocktails full width underneath, titled "To finish."
+ * Rows with a description get the name/description style; rows without get
+ * the name · · · price style. A trailing "4.6%" in a name becomes small ABV text.
+ * If every row in a section has the same description (e.g. "330ml") it is
+ * shown once under the heading instead of on every row.
  */
+const DRINK_TITLES = {
+  cocktails: "Cocktails",
+  mocktails: "Without alcohol",
+  beers: "Beer",
+  beer: "Beer",
+  "dessert cocktails": "To finish",
+};
+
 function renderCocktails(items, container) {
   const sections = groupBySection(items);
   if (!sections.size) throw new Error("No cocktail items");
 
-  const html = [];
-  sections.forEach((drinks, sectionName) => {
-    const parts = sectionName.split("·").map((s) => s.trim());
-    const eyebrow = parts[0];
-    const titleText = parts[1] || parts[0];
+  const esc = escapeHtml;
 
-    html.push('<div class="menu-section">');
-    html.push('<div class="menu-section-head">');
-    html.push(`<span class="eyebrow green">${escapeHtml(eyebrow)}</span>`);
-    html.push(`<h2 class="display-md">${escapeHtml(titleText)}.</h2>`);
-    html.push("</div>");
-    html.push('<ul class="menu-list">');
-    drinks.forEach((d) => {
-      if (!d.name) return;
-      const price = d.price ? `<span class="dish-price">${escapeHtml(d.price)}</span>` : "";
-      const desc = d.description
-        ? `<span class="dish-desc">${escapeHtml(d.description)}</span>`
+  function itemHtml(d, sharedNote) {
+    if (!d.name) return "";
+    const price = d.price ? `<span class="dish-price">${esc(d.price)}</span>` : "";
+    const desc = sharedNote ? "" : (d.description || "").trim();
+    if (desc) {
+      return `<li><div class="dish-details"><span class="dish-name">${esc(d.name)}</span><span class="dish-desc">${esc(desc)}</span></div>${price}</li>`;
+    }
+    const m = d.name.match(/^(.*?)\s+(\d+(?:[.,]\d+)?%)$/);
+    const name = m
+      ? `${esc(m[1])} <span class="abv">${esc(m[2])}</span>`
+      : esc(d.name);
+    return `<li><span class="dish-name">${name}</span><span class="dish-dots"></span>${price}</li>`;
+  }
+
+  function sectionHtml(sectionName, drinks, splitList) {
+    const key = sectionName.trim().toLowerCase();
+    const title = DRINK_TITLES[key] || sectionName;
+    const descs = drinks.map((d) => (d.description || "").trim());
+    const shared =
+      drinks.length > 1 && descs[0] && descs.every((x) => x === descs[0])
+        ? descs[0]
         : "";
-      html.push(
-        `<li>
-          <div class="dish-details">
-            <span class="dish-name">${escapeHtml(d.name)}</span>
-            ${desc}
-          </div>
-          <span class="dish-dots"></span>
-          ${price}
-        </li>`
-      );
-    });
-    html.push("</ul>");
+    const rows = drinks.map((d) => itemHtml(d, shared));
+    let lists;
+    if (splitList && rows.length > 4) {
+      const half = Math.ceil(rows.length / 2);
+      lists = `<div class="menu-section-two-col"><ul class="menu-list">${rows
+        .slice(0, half)
+        .join("")}</ul><ul class="menu-list">${rows.slice(half).join("")}</ul></div>`;
+    } else {
+      lists = `<ul class="menu-list">${rows.join("")}</ul>`;
+    }
+    return `<div class="menu-section">
+      <div class="menu-section-head">
+        <span class="eyebrow green">${esc(sectionName)}</span>
+        <h2 class="display-md">${esc(title)}.</h2>
+        ${shared ? `<p class="glass-note small">${esc(shared)}</p>` : ""}
+      </div>
+      ${lists}
+    </div>`;
+  }
+
+  const entries = Array.from(sections.entries());
+  const isFinish = ([name]) => /dessert|digestiv/i.test(name);
+  const main = entries.filter((e) => !isFinish(e));
+  const finish = entries.filter(isFinish);
+
+  const html = [];
+  if (main.length === 1) {
+    html.push(sectionHtml(main[0][0], main[0][1], true));
+  } else if (main.length > 1) {
+    const [first, ...rest] = main;
+    html.push('<div class="menu-section-two-col">');
+    html.push(sectionHtml(first[0], first[1], false));
+    html.push("<div>" + rest.map(([n, d]) => sectionHtml(n, d, false)).join("") + "</div>");
     html.push("</div>");
-  });
+  }
+  finish.forEach(([n, d]) => html.push(sectionHtml(n, d, true)));
 
   container.innerHTML = html.join("");
+  console.log(`Cocktails loaded from Sheet: ${items.length} rows`);
 }
 
 /**
