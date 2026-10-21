@@ -808,3 +808,128 @@ if (document.readyState === "loading") {
   initSetLunch();
   initEventsPackForm();
 }
+
+/* ---------------------------------------------------------------------------
+   Promo pop-up — Xinomavro Day (Sunday 1 November 2026)
+   - Shows once per visitor, 2.5 seconds after the page loads
+   - Stops appearing automatically after the end date below
+   - Add ?promo=1 to any page URL to preview it again
+   To reuse for a future offer: change the PROMO settings and the id.
+   --------------------------------------------------------------------------- */
+(function () {
+  const PROMO = {
+    id: "xinomavro-day-2026",
+    endsAt: Date.UTC(2026, 10, 1, 23, 59), // 1 Nov 2026, 23:59 London (GMT)
+    eyebrow: "Sunday 1 November",
+    title: "Xinomavro Day.",
+    body:
+      "Book a table for two or more and order three courses, and we'll bring a bottle of Xinomavro to the table, on us.",
+    small: "Sunday 1 November only. One bottle per booking.",
+    cta: "Book for 1 November",
+    ctaUrl: "https://www.opentable.com/r/clio-restaurant-london",
+    image: "/assets/images/interior-bar.jpg",
+    imageAlt: "Tables laid with wine glasses in the dining room at Clio",
+  };
+
+  const force = /[?&]promo=1\b/.test(location.search);
+  if (!force && Date.now() > PROMO.endsAt) return;
+
+  const KEY = "clio-promo-seen-" + PROMO.id;
+  try {
+    if (!force && localStorage.getItem(KEY)) return;
+  } catch (e) {}
+
+  const css = `
+  .clio-promo{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;
+    background:rgba(29,22,27,.55);opacity:0;transition:opacity .35s ease}
+  .clio-promo.open{opacity:1}
+  .clio-promo-card{position:relative;display:grid;grid-template-columns:1fr 1fr;max-width:760px;width:100%;
+    background:#3e2438;color:#f5ede0;border-radius:4px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35);
+    transform:translateY(16px);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+  .clio-promo.open .clio-promo-card{transform:none}
+  .clio-promo-img{min-height:100%;background:#2d1a28}
+  .clio-promo-img img{display:block;width:100%;height:100%;object-fit:cover}
+  .clio-promo-text{padding:44px 40px 36px;display:flex;flex-direction:column}
+  .clio-promo-eyebrow{font-family:'Inter',sans-serif;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#d9967f}
+  .clio-promo-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:2.9rem;line-height:1;margin:.9rem 0 0;color:#f5ede0}
+  .clio-promo-rule{width:48px;height:1px;background:rgba(245,237,224,.4);border:0;margin:1.4rem 0}
+  .clio-promo-body{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.3rem;line-height:1.45;margin:0;color:#f5ede0}
+  .clio-promo-small{font-family:'Inter',sans-serif;font-size:.8rem;line-height:1.5;opacity:.7;margin:1rem 0 0}
+  .clio-promo-actions{margin-top:auto;padding-top:1.8rem;display:flex;flex-wrap:wrap;align-items:center;gap:1.1rem}
+  .clio-promo-cta{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.6rem;border-radius:999px;background:#f5ede0;color:#3e2438;
+    font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+  .clio-promo-cta:hover{background:#fff}
+  .clio-promo-later{background:none;border:0;padding:0;color:#f5ede0;opacity:.7;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
+  .clio-promo-later:hover{opacity:1}
+  .clio-promo-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
+    background:rgba(245,237,224,.12);color:#f5ede0;font-size:1.3rem;line-height:1}
+  .clio-promo-close:hover{background:rgba(245,237,224,.25)}
+  @media (max-width:640px){
+    .clio-promo{align-items:flex-end;padding:0}
+    .clio-promo-card{grid-template-columns:1fr;border-radius:12px 12px 0 0;max-height:92vh;overflow-y:auto}
+    .clio-promo-img{height:180px}
+    .clio-promo-text{padding:28px 24px 30px}
+    .clio-promo-title{font-size:2.3rem}
+    .clio-promo-body{font-size:1.15rem}
+  }
+  @media (prefers-reduced-motion:reduce){.clio-promo,.clio-promo-card{transition:none}}`;
+
+  function show() {
+    const style = document.createElement("style");
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    const wrap = document.createElement("div");
+    wrap.className = "clio-promo";
+    wrap.setAttribute("role", "dialog");
+    wrap.setAttribute("aria-modal", "true");
+    wrap.setAttribute("aria-labelledby", "clio-promo-title");
+    wrap.innerHTML = `
+      <div class="clio-promo-card">
+        <div class="clio-promo-img"><img src="${PROMO.image}" alt="${PROMO.imageAlt}" /></div>
+        <div class="clio-promo-text">
+          <span class="clio-promo-eyebrow">${PROMO.eyebrow}</span>
+          <h2 class="clio-promo-title" id="clio-promo-title">${PROMO.title}</h2>
+          <hr class="clio-promo-rule" />
+          <p class="clio-promo-body">${PROMO.body}</p>
+          <p class="clio-promo-small">${PROMO.small}</p>
+          <div class="clio-promo-actions">
+            <a class="clio-promo-cta" href="${PROMO.ctaUrl}" target="_blank" rel="noopener">${PROMO.cta} <span aria-hidden="true">→</span></a>
+            <button type="button" class="clio-promo-later">Maybe later</button>
+          </div>
+        </div>
+        <button type="button" class="clio-promo-close" aria-label="Close">×</button>
+      </div>`;
+    document.body.appendChild(wrap);
+
+    const lastFocus = document.activeElement;
+    function close() {
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      wrap.classList.remove("open");
+      document.removeEventListener("keydown", onKey);
+      setTimeout(() => wrap.remove(), 350);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    function onKey(e) { if (e.key === "Escape") close(); }
+
+    wrap.addEventListener("click", (e) => { if (e.target === wrap) close(); });
+    wrap.querySelector(".clio-promo-close").addEventListener("click", close);
+    wrap.querySelector(".clio-promo-later").addEventListener("click", close);
+    wrap.querySelector(".clio-promo-cta").addEventListener("click", () => {
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      if (window.dataLayer) window.dataLayer.push({ event: "promo_book_click", promo_id: PROMO.id });
+    });
+    document.addEventListener("keydown", onKey);
+
+    requestAnimationFrame(() => {
+      wrap.classList.add("open");
+      wrap.querySelector(".clio-promo-cta").focus({ preventScroll: true });
+    });
+    if (window.dataLayer) window.dataLayer.push({ event: "promo_view", promo_id: PROMO.id });
+  }
+
+  function start() { setTimeout(show, force ? 300 : 2500); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
+})();
