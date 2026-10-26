@@ -28,7 +28,7 @@ const SHEETS = {
 // Events Pack lead capture
 const EVENTS_PACK = {
   // Paste the Apps Script /exec URL here after deployment
-  endpoint: "REPLACE_WITH_APPS_SCRIPT_URL",
+  endpoint: "https://script.google.com/macros/s/AKfycbyCw0Wxo7Iw3S7xL62pPXEqxT_SQO4n830rzkWScBxyRUmv29NbA75cd4IkdkGygJN2Og/exec",
   // Path to the downloadable PDF
   pdfUrl: "/assets/downloads/clio-events-pack.pdf",
   // Filename saved on the user's device
@@ -767,7 +767,11 @@ function initEventsPackForm() {
       phone: form.querySelector("#ep-phone").value.trim(),
       marketing_consent: form.querySelector("#ep-consent").checked,
       user_agent: navigator.userAgent,
+      page: location.pathname,
     };
+
+    // Tell Tag Manager a lead happened (for Meta / Google Analytics, if set up there)
+    if (window.dataLayer) window.dataLayer.push({ event: "events_pack_download" });
 
     // Trigger the download first — user gets what they came for even if
     // the lead capture fails
