@@ -830,7 +830,7 @@ if (document.readyState === "loading") {
       "Book a table for two or more and order three courses, and we'll bring a bottle of Xinomavro to the table, on us.",
     small: "Sunday 1 November only. One bottle per booking.",
     cta: "Book for 1 November",
-    ctaUrl: "https://www.opentable.com/r/clio-restaurant-london",
+    ctaUrl: "https://www.opentable.co.uk/r/clio-restaurant-reservations-london?restref=470940&lang=en-GB&ot_source=Restaurant%20website",
     image: "/assets/images/interior-bar.jpg",
     imageAlt: "Tables laid with wine glasses in the dining room at Clio",
   };
