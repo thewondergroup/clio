@@ -4,7 +4,7 @@
    ========================================================================== */
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Julius+Sans+One&display=swap');
 
 /* -------------------------------------------------------------------------
    Design tokens
@@ -715,4 +715,28 @@ section {
 .bg-green-deep .eyebrow,
 .bg-aubergine .eyebrow {
   color: var(--clio-terracotta);
+}
+
+/* Site credit */
+.footer-credit {
+  color: rgba(245, 237, 224, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-credit-name {
+  font-family: 'Julius Sans One', var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-left: 0.35em;
+  color: rgba(245, 237, 224, 0.9);
+}
+.footer-credit:hover,
+.footer-credit:hover .footer-credit-name {
+  color: #f5ede0;
+}
+
+/* Keep the menu bar on one line on smaller laptops (more links now) */
+@media (min-width: 901px) and (max-width: 1279px) {
+  .main-nav { gap: clamp(0.9rem, 1.9vw - 0.45rem, 2.5rem); }
+  .main-nav .nav-link { letter-spacing: 0.14em; font-size: 0.7rem; }
 }

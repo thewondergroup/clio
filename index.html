@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta name="description" content="Modern Greek restaurant at 66 Chiltern Street, Marylebone. Produce-led cooking, an eclectic wine list and cocktails. MICHELIN Guide 2026 selected." />
   <title>Clio | Modern Greek Restaurant in Marylebone, London</title>
   <link rel="icon" type="image/webp" href="assets/images/favicon.webp" />
-  <link rel="stylesheet" href="assets/css/main.css?v=3" />
+  <link rel="stylesheet" href="assets/css/main.css?v=5" />
   <link rel="stylesheet" href="assets/css/home.css?v=3" />
   <style>
     /* Mobile menu colour fixes — inline override */
@@ -89,6 +89,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .hero-actions .btn{padding:.85rem 1.05rem;font-size:.68rem;letter-spacing:.14em}
     }
   </style>
+  <style>
+    /* Souvla Sunday homepage feature */
+    .home-souvla{background:#2d381a;color:#f5ede0;padding:clamp(4rem,10vw,8rem) 0;overflow:hidden}
+    .home-souvla-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,6vw,6rem);align-items:center}
+    .home-souvla-media{position:relative;width:100%;max-width:380px;justify-self:center;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:#1d2410;box-shadow:0 40px 90px rgba(0,0,0,.4)}
+    .home-souvla-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .home-souvla .tag{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:#f5ede0}
+    .home-souvla .tag b{background:#b85840;color:#fff;font-weight:500;padding:.35rem .7rem;border-radius:999px;letter-spacing:.18em}
+    .home-souvla h2{font-family:var(--font-display);font-weight:300;font-size:clamp(3rem,7vw,6.5rem);line-height:.92;letter-spacing:-.02em;margin:1.1rem 0 1.3rem;color:#f5ede0}
+    .home-souvla p{font-family:var(--font-display);font-style:italic;font-size:clamp(1.15rem,1.8vw,1.5rem);line-height:1.45;max-width:34ch;margin:0 0 1.6rem;color:#f5ede0}
+    .home-souvla ul{list-style:none;padding:0;margin:0 0 2.2rem;display:flex;flex-wrap:wrap;gap:.5rem}
+    .home-souvla li{border:1px solid rgba(245,237,224,.35);border-radius:999px;padding:.45rem .9rem;font-size:.82rem;color:#f5ede0}
+    .home-souvla .price{font-family:var(--font-display);font-size:2.6rem;line-height:1;margin:0 0 1.8rem;color:#f5ede0}
+    .home-souvla .actions{display:flex;flex-wrap:wrap;gap:1rem}
+    .home-souvla .b{display:inline-flex;align-items:center;gap:.7rem;padding:1rem 1.8rem;border-radius:999px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+    .home-souvla .b1{background:#f5ede0;color:#2d381a}
+    .home-souvla .b1:hover{background:#fff}
+    .home-souvla .b2{color:#f5ede0;border:1px solid rgba(245,237,224,.55)}
+    .home-souvla .b2:hover{border-color:#f5ede0}
+    @media (max-width:900px){.home-souvla-grid{grid-template-columns:1fr}.home-souvla-media{order:2;max-width:320px}}
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -107,6 +128,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/" class="nav-link active">Home</a>
       <a href="/about/" class="nav-link">About</a>
       <a href="/menus/" class="nav-link">Menus</a>
+      <a href="/souvla-sunday/" class="nav-link">Souvla Sunday</a>
       <a href="/set-lunch/" class="nav-link" data-live-nav="set-lunch" hidden>Set Lunch</a>
       <a href="/gallery/" class="nav-link">Gallery</a>
       <a href="/private-dining/" class="nav-link">Private Dining</a>
@@ -151,6 +173,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="lede">Produce-led Mediterranean cooking — grilled fish, slow-roasted meats, and seasonal vegetables from day-boat suppliers and trusted farms.</p>
           <p>A menu built for sharing, a wine list that reaches from Greece to Burgundy, and a dining room designed to slow down in. Open for lunch and dinner, every day of the week.</p>
           <a href="/about/" class="btn btn-outline" style="margin-top:1.5rem;">Our story <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Souvla Sunday -->
+  <section class="home-souvla" aria-labelledby="home-souvla-title">
+    <div class="container">
+      <div class="home-souvla-grid">
+        <div class="home-souvla-media">
+          <video muted loop playsinline preload="none" poster="assets/images/souvla-sunday-poster.jpg" data-autoplay aria-label="Souvla being roasted on the spit, carved and seasoned">
+            <source src="assets/video/souvla-sunday.mp4" type="video/mp4" />
+            <source src="assets/video/souvla-sunday.webm" type="video/webm" />
+          </video>
+        </div>
+        <div>
+          <span class="tag"><b>New</b> Every Sunday</span>
+          <h2 id="home-souvla-title">Souvla<br/>Sunday.</h2>
+          <p>Spit-roasted suckling pig or Greek spiced lamb, served tableside with two dips, flat bread, Cretan pickles, hand-cut chips and a Greek salad.</p>
+          <div class="price">£45</div>
+          <div class="actions">
+            <a href="https://www.opentable.co.uk/r/clio-restaurant-reservations-london?restref=470940&amp;lang=en-GB&amp;ot_source=Restaurant%20website" target="_blank" rel="noopener" class="b b1">Book a Sunday table <span aria-hidden="true">→</span></a>
+            <a href="/souvla-sunday/" class="b b2">See Souvla Sunday</a>
+          </div>
         </div>
       </div>
     </div>
@@ -308,6 +354,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h4>Explore</h4>
           <ul>
             <li><a href="/menus/">Menus</a></li>
+            <li><a href="/souvla-sunday/">Souvla Sunday</a></li>
             <li><a href="/gallery/">Gallery</a></li>
             <li><a href="/about/">About</a></li>
           </ul>
@@ -323,12 +370,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Clio Restaurant</span>
-        <span>Designed by <a href="https://www.thewonderagency.co/" target="_blank" rel="noopener" class="footer-attribution">The Wonder Agency</a></span>
+        <a href="https://www.thewonderagency.co" target="_blank" rel="noopener" class="footer-credit">Created by <span class="footer-credit-name">The Wonder Agency</span></a>
       </div>
     </div>
   </footer>
 
   <script src="assets/js/main.js?v=3"></script>
   <script src="assets/js/live-content.js?v=2"></script>
+  <script>
+    (function () {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.querySelectorAll("video[data-autoplay]").forEach(function (v) {
+        function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? play() : v.pause(); }); }, { threshold: 0.25 }).observe(v);
+        } else { play(); }
+      });
+    })();
+  </script>
 </body>
 </html>
