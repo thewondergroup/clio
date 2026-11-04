@@ -833,8 +833,8 @@ if (document.readyState === "loading") {
     cta: "Book a Sunday table",
     ctaUrl: "https://www.opentable.co.uk/r/clio-restaurant-reservations-london?restref=470940&lang=en-GB&ot_source=Restaurant%20website",
     secondary: { label: "See what's included", url: "/souvla-sunday/" },
-    image: "/assets/images/souvla-sunday-table.jpg",
-    imageAlt: "Souvla Sunday from above: carved meat with Greek salad, dips, pickles and chips",
+    image: "/assets/images/souvla-sunday-candlelit.jpg",
+    imageAlt: "Souvla Sunday by candlelight at Clio, with red wine, dips, chips and Greek salad",
   };
 
   const force = /[?&]promo=1\b/.test(location.search);
