@@ -826,6 +826,7 @@ if (document.readyState === "loading") {
     endsAt: null, // set a date (e.g. Date.UTC(2027, 0, 31, 23, 59)) to stop it automatically
     skipPaths: ["/souvla-sunday/"], // don't show on the page it advertises
     showAgainAfterDays: 3, // after someone closes it, show it again this many days later
+    alwaysOnPaths: ["/", "/index.html"], // on these pages it shows on every visit and refresh
     eyebrow: "New · Every Sunday",
     title: "Souvla Sunday.",
     body:
@@ -846,7 +847,8 @@ if (document.readyState === "loading") {
   try {
     const seen = Number(localStorage.getItem(KEY)) || 0; // time it was last closed ("1" from older versions counts as long ago)
     const wait = (PROMO.showAgainAfterDays || 0) * 864e5;
-    if (!force && seen && (!wait || Date.now() - seen < wait)) return;
+    const always = (PROMO.alwaysOnPaths || []).indexOf(location.pathname) !== -1;
+    if (!force && !always && seen && (!wait || Date.now() - seen < wait)) return;
   } catch (e) {}
 
   const css = `
