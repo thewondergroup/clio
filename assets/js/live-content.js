@@ -825,6 +825,7 @@ if (document.readyState === "loading") {
     id: "souvla-sunday-2026",
     endsAt: null, // set a date (e.g. Date.UTC(2027, 0, 31, 23, 59)) to stop it automatically
     skipPaths: ["/souvla-sunday/"], // don't show on the page it advertises
+    showAgainAfterDays: 3, // after someone closes it, show it again this many days later
     eyebrow: "New · Every Sunday",
     title: "Souvla Sunday.",
     body:
@@ -843,7 +844,9 @@ if (document.readyState === "loading") {
 
   const KEY = "clio-promo-seen-" + PROMO.id;
   try {
-    if (!force && localStorage.getItem(KEY)) return;
+    const seen = Number(localStorage.getItem(KEY)) || 0; // time it was last closed ("1" from older versions counts as long ago)
+    const wait = (PROMO.showAgainAfterDays || 0) * 864e5;
+    if (!force && seen && (!wait || Date.now() - seen < wait)) return;
   } catch (e) {}
 
   const css = `
@@ -912,7 +915,7 @@ if (document.readyState === "loading") {
 
     const lastFocus = document.activeElement;
     function close() {
-      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
       wrap.classList.remove("open");
       document.removeEventListener("keydown", onKey);
       setTimeout(() => wrap.remove(), 350);
@@ -924,7 +927,7 @@ if (document.readyState === "loading") {
     wrap.querySelector(".clio-promo-close").addEventListener("click", close);
     wrap.querySelector(".clio-promo-later").addEventListener("click", close);
     wrap.querySelector(".clio-promo-cta").addEventListener("click", () => {
-      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
       if (window.dataLayer) window.dataLayer.push({ event: "promo_book_click", promo_id: PROMO.id });
     });
     document.addEventListener("keydown", onKey);
